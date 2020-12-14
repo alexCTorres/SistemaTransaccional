@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 @Entity
 public class Registro implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@JoinColumn(name = "reg_id")
 	private int id;

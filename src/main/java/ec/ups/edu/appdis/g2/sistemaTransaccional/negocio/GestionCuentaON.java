@@ -4,9 +4,6 @@ import java.sql.SQLException;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-
-import org.hibernate.validator.internal.util.privilegedactions.NewProxyInstance;
-
 import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.CuentaDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Cuenta;
 

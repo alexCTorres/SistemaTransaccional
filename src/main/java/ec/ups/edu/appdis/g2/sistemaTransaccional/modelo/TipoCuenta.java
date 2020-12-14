@@ -9,6 +9,10 @@ import javax.persistence.JoinColumn;
 @Entity
 public class TipoCuenta implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@JoinColumn(name = "tipc_id")
 	private int id;

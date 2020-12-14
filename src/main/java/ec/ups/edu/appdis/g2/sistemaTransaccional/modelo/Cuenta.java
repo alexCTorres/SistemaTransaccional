@@ -2,7 +2,6 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.modelo;
 
 import java.io.Serializable;
 import java.security.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -10,6 +9,11 @@ import javax.persistence.JoinColumn;
 @Entity
 public class Cuenta implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@JoinColumn(name = "cue_numero_cuenta")
 	private String numeroCuenta;

@@ -7,6 +7,8 @@ import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 public class Resources {
@@ -23,4 +25,8 @@ public class Resources {
 	private void closeConnection(@Disposes Connection conn) throws SQLException {
 		conn.close();
 	}
+	
+	@Produces
+	@PersistenceContext
+	private EntityManager em;
 }

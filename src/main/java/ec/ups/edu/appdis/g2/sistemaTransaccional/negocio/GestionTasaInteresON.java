@@ -4,8 +4,6 @@ import java.sql.SQLException;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.xml.crypto.dsig.Manifest;
-
 import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.TasaInteresDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.TasaInteres;
 

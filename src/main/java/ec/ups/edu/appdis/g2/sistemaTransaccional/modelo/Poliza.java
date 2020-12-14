@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 @Entity
 public class Poliza implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@JoinColumn(name = "pol_id")
 	private int id;

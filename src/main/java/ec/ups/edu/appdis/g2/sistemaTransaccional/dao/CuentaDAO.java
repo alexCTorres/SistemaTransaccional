@@ -2,7 +2,6 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -15,7 +14,6 @@ public class CuentaDAO {
 	@Inject
 	private EntityManager em;
 
-	@Inject
 	private Connection con;
 
 	// metodo de insertar con JPA utilizando el Entity manager
