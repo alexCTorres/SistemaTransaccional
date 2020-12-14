@@ -3,8 +3,15 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.modelo;
 import java.io.Serializable;
 import java.security.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+@Entity
 public class Registro implements Serializable{
 
+	@Id
+	@JoinColumn(name = "reg_id")
 	private int id;
 	private Timestamp fechaIngreso;
 	private String descripcion;

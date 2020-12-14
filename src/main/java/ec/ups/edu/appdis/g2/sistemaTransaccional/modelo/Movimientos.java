@@ -3,8 +3,15 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.modelo;
 import java.io.Serializable;
 import java.security.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+
+@Entity
 public class Movimientos implements Serializable{
 
+	@Id
+	@JoinColumn(name = "mov_id")
 	private int id;
 	private String tipo;
 	private double monto;
