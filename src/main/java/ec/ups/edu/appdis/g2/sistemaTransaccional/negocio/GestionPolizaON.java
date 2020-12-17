@@ -9,7 +9,7 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.PolizaDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Poliza;
 
 @Stateless
-public class GestionPolizaON implements GestionPolizaOnRemoto {
+public class GestionPolizaON {
 
 	@Inject
 	private PolizaDAO daoPoliza;

@@ -8,7 +8,7 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.CuentaDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Cuenta;
 
 @Stateless
-public class GestionCuentaON implements GestionCuentaOnRemoto {
+public class GestionCuentaON {
 
 	@Inject
 	private CuentaDAO daoCuenta;

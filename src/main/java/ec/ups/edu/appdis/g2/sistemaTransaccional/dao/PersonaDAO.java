@@ -39,10 +39,11 @@ public class PersonaDAO {
 	}
 
 	// metodo de read con JPA utilizando el Entity manager
-	public Persona readJPA(String cedula) throws SQLException {
-		Persona p = em.find(Persona.class, cedula);
+	public Persona readJPA(int id) throws SQLException {
+		Persona p = em.find(Persona.class, id);
 		return p;
 	}
+	
 
 	// metodo de delete con JPA utilizando el Entity manager
 	public boolean deleteJPA(String cedula) throws SQLException {

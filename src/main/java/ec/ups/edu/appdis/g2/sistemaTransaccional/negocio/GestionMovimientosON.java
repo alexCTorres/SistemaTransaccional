@@ -10,7 +10,7 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Movimientos;
 
 
 @Stateless
-public class GestionMovimientosON implements GestionMovimientosOnRemoto{
+public class GestionMovimientosON {
 
 	@Inject
 	private MovimientosDAO daoMovimientos;

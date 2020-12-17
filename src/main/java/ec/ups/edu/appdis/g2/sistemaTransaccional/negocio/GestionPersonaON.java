@@ -9,7 +9,7 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.PersonaDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Persona;
 
 @Stateless
-public class GestionPersonaON implements GestionPersonaOnRemoto {
+public class GestionPersonaON  {
 
 	@Inject
 	private PersonaDAO daoPersona;
@@ -36,10 +36,10 @@ public class GestionPersonaON implements GestionPersonaOnRemoto {
 		return true;
 	}
 	
-	public Persona buscarPersona(String cedula) throws Exception {
+	public Persona buscarPersona(int id) throws Exception {
 		Persona p = new Persona();
 		try {
-			p = daoPersona.readJPA(cedula);
+			p = daoPersona.readJPA(id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,9 +48,9 @@ public class GestionPersonaON implements GestionPersonaOnRemoto {
 		return p;
 	}
 	
-	public boolean eliminarPersona(String cedula) throws Exception {
+	public boolean eliminarPersona(int id) throws Exception {
 		try {
-			Persona p = daoPersona.readJPA(cedula);
+			Persona p = daoPersona.readJPA(id);
 			if(p==null) {
 				System.out.println("Persona no encontrada");
 			}else {

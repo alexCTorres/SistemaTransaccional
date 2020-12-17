@@ -8,7 +8,7 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.TasaInteresDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.TasaInteres;
 
 @Stateless
-public class GestionTasaInteresON implements GestionTasaInteresOnRemoto {
+public class GestionTasaInteresON {
 
 	@Inject
 	private TasaInteresDAO daoTasaInteres;

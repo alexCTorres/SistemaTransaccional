@@ -9,7 +9,7 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.TipoCuentaDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.TipoCuenta;
 
 @Stateless
-public class GestionTipoCuentaON implements GestionTipoCuentaOnRemoto {
+public class GestionTipoCuentaON {
 
 	@Inject
 	private TipoCuentaDAO daoTipoCuenta;

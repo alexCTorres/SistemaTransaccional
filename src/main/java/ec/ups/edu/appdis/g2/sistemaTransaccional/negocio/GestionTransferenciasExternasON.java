@@ -9,7 +9,7 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.TransferenciasExternasDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.TransferenciasExternas;
 
 @Stateless
-public class GestionTransferenciasExternasON implements GestionTransferenciasExternasOnRemoto {
+public class GestionTransferenciasExternasON  {
 
 
 	@Inject

@@ -6,13 +6,18 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.RegistroDAO;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.UsuarioDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Registro;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Usuario;
 
 @Stateless
-public class GestionRegistroON implements GestionRegistroOnRemoto {
+public class GestionRegistroON  {
 
 	@Inject
 	private RegistroDAO daoRegistro;
+
+	@Inject
+	private UsuarioDAO daoUsuario;
 
 	public boolean registrarRegistro(Registro registro) throws Exception {
 		try {
@@ -61,8 +66,17 @@ public class GestionRegistroON implements GestionRegistroOnRemoto {
 		return true;
 	}
 
-	public boolean validarIngresoCuenta(String usuario, String contrasenia) {
-		return true;
+	public Usuario buscarUsuarioNombre(String usuario) throws Exception {
+		Usuario u = new Usuario();
+		System.out.println("entra al dao");
+		u = daoUsuario.buscarPorUsuarioJPA(usuario);
+		System.out.println("sale del dao");
+		if (u==null) {
+			System.out.println("usuario no encontrado");
+			return null;
+		} else {
+			return u;
+		}
 	}
 
 	public boolean cambioContrasena(String correo) {

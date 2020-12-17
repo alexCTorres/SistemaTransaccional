@@ -9,7 +9,7 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.UsuarioDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Usuario;
 
 @Stateless
-public class GestionUsuarioON implements GestionUsuarioOnRemoto {
+public class GestionUsuarioON  {
 
 	@Inject
 	private UsuarioDAO daoUsuario;

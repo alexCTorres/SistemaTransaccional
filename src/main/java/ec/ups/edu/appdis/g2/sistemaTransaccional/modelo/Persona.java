@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.validation.constraints.Email;
+
 
 @Entity
 public class Persona implements Serializable {
@@ -24,6 +26,8 @@ public class Persona implements Serializable {
 	private String direccion;
 	private String tefefono;
 	private Date fechaNacimiento;
+	
+	@Email
 	private String correo;
 
 	public int getId() {
