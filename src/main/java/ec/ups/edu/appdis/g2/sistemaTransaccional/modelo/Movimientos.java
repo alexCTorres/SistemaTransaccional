@@ -1,27 +1,37 @@
 package ec.ups.edu.appdis.g2.sistemaTransaccional.modelo;
 
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Movimientos implements Serializable{
+@Table(name = "ef_movimientos")
+public class Movimientos implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@JoinColumn(name = "mov_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "mov_id")
 	private int id;
+	@Column(name = "mov_tipo")
 	private String tipo;
+	@Column(name = "mov_monto")
 	private double monto;
+	@Column(name = "mov_cuenta_enviada")
 	private String cuentaSale;
-	private Timestamp fecha;
+	@Column(name = "mov_fecha")
+	private Date fecha;
+	@OneToOne
+	@JoinColumn(name = "cuentas_id_fk")
 	private Cuenta cuenta;
 
 	public int getId() {
@@ -56,11 +66,11 @@ public class Movimientos implements Serializable{
 		this.cuentaSale = cuentaSale;
 	}
 
-	public Timestamp getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Timestamp fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

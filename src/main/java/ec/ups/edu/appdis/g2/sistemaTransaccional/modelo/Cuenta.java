@@ -2,25 +2,36 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.modelo;
 
 import java.io.Serializable;
 import java.security.Timestamp;
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 
 @Entity
+@Table(name = "ef_cuentas")
 public class Cuenta implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@JoinColumn(name = "cue_numero_cuenta")
+	@Column(name = "cue_numero_cuenta")
 	private String numeroCuenta;
-	private Timestamp fechaApertura;
+	@Column(name = "cue_fecha_apertura")
+	private Date fechaApertura;
+	@Column(name = "cue_estado")
 	private String estado;
+	@Column(name = "cue_saldo")
 	private double saldo;
+	@OneToOne
+	@JoinColumn(name = "persona_id_fk")
 	private Persona persona;
+	@OneToOne
+	@JoinColumn(name = "tipcuenta_id_fk")
 	private TipoCuenta tipoCuenta;
 
 	public String getNumeroCuenta() {
@@ -31,11 +42,11 @@ public class Cuenta implements Serializable {
 		this.numeroCuenta = numeroCuenta;
 	}
 
-	public Timestamp getFechaApertura() {
+	public Date getFechaApertura() {
 		return fechaApertura;
 	}
 
-	public void setFechaApertura(Timestamp fechaApertura) {
+	public void setFechaApertura(Date fechaApertura) {
 		this.fechaApertura = fechaApertura;
 	}
 

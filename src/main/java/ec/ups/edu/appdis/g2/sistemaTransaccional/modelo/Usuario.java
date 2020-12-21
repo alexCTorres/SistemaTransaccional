@@ -2,34 +2,34 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Usuario implements Serializable{
-
+@Table(name = "ef_usuarios")
+public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@JoinColumn(name = "usu_id")
-	private int id;
+	@Column(name = "usu_nombre_usuario")
 	private String nombreUsuario;
+	@Column(name = "usu_contrasenia")
 	private String contrasenia;
+	@Column(name = "usu_rol")
 	private String rol;
+	@Column(name = "usu_estado")
 	private String estado;
+	@Column(name = "usu_intentos_logeo")
 	private int intentosLogin;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "personas_id_fk")
 	private Persona persona;
-	
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getNombreUsuario() {
 		return nombreUsuario;

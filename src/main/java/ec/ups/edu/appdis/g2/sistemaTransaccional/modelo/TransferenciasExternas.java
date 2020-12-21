@@ -1,26 +1,36 @@
 package ec.ups.edu.appdis.g2.sistemaTransaccional.modelo;
 
 import java.io.Serializable;
-import java.security.Timestamp;
-
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "ef_transferencias_externas")
 public class TransferenciasExternas implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@JoinColumn(name = "tra_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "tra_id")
 	private int id;
+	@Column(name = "tra_entidad_financiera")
 	private String entidadFinanciera;
+	@Column(name = "tra_num_cuenta")
 	private String cuentaSale;
+	@Column(name = "tra_monto")
 	private double monto;
-	private Timestamp fecha;
+	@Column(name = "tra_fecha")
+	private Date fecha;
+	@OneToOne
+	@JoinColumn(name = "cuentas_id_fk")
 	private Cuenta Cuenta;
 
 	public int getId() {
@@ -55,11 +65,11 @@ public class TransferenciasExternas implements Serializable{
 		this.monto = monto;
 	}
 
-	public Timestamp getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Timestamp fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 

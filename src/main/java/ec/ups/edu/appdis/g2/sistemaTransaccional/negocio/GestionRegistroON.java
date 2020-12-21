@@ -23,9 +23,8 @@ public class GestionRegistroON  {
 		try {
 			daoRegistro.insertJPA(registro);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new Exception("Error al registrar");
+			throw new Exception("Error al registrar" +e.getMessage());
 		}
 		return true;
 	}
@@ -62,9 +61,6 @@ public class GestionRegistroON  {
 		return true;
 	}
 
-	public boolean bloquearCuenta(int intentos) {
-		return true;
-	}
 
 	public Usuario buscarUsuarioNombre(String usuario) throws Exception {
 		Usuario u = new Usuario();

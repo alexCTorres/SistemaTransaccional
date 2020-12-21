@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="html/templateCrearUsuarios.xhtml">
+	<ui:define name="title">
+        Eliminar Usuarios
+    </ui:define>
+	<ui:define name="contenido">
+		<h:form class="homepage_invitee_form" id="frm">
+			<div class="form-group">
+				<label for="txtUser" class="col-md-12">•Nombre de Usuario</label>
+				<div class="col-md-12">
+					<h:inputText id="txtUser"
+						value="#{usuarioBean.newUsuario.nombreUsuario}" a:placeholder="Ingrese un usuario válido..."
+						class="form-control form-control-line" />
+					<h:message for="txtUser" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton action="#{usuarioBean.doBuscarUsuario()}"
+						class="btn btn-success" value="Buscar" />
+					<br/><br/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="txtPass" class="col-md-12">•Contraseña</label>
+				<div class="col-md-12"> 
+					<h:inputText id="txtPass" disabled="true"
+						value="#{usuarioBean.newUsuario.contrasenia}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtRol" class="col-md-12">•Rol</label>
+				<div class="col-md-12">
+					<h:selectOneMenu value="#{usuarioBean.newUsuario.rol}" disabled="true">
+						<f:selectItem itemValue="ADMINISTRADOR" itemLabel="ADMINISTRADOR" />
+						<f:selectItem itemValue="CAJERO" itemLabel="CAJERO" />
+						<f:selectItem itemValue="ASISTENTE DE CAPTACIONES"
+							itemLabel="ASISTENTE DE CAPTACIONES" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			<h:messages globalOnly="true" />
+			<div class="form-group">
+				<div class="col-sm-12">
+					<br />
+					<h:commandButton action="#{usuarioBean.doEliminarUsuario()}"
+						class="btn btn-success" value="Eliminar" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

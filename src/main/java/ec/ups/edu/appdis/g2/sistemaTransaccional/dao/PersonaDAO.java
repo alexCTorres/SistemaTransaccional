@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Persona;
 
 @Stateless
@@ -50,5 +52,12 @@ public class PersonaDAO {
 		Persona p = em.find(Persona.class, cedula);
 		em.remove(p);
 		return true;
+	}
+	
+	public int extraerCOdigo() {
+		String jpql = "select max(e.per_id) from ef_personas e";
+		Query q = em.createQuery(jpql);
+		int cod = q.getMaxResults();
+		return cod;
 	}
 }

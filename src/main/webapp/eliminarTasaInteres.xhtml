@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+	<f:metadata>
+	<f:param name="id" value="#{editarTasaInteresBean.id}"></f:param>
+		<f:viewAction action="#{editarTasaInteresBean.cargarDatosTasa()}" />
+	</f:metadata>
+</h:head>
+
+<ui:composition template="html/templateParametrizarTasaInteres.xhtml">
+	<ui:define name="title">
+        Eliminar Tasa de Interes.
+    </ui:define>
+	<ui:define name="contenido">
+		<h:form class="homepage_invitee_form" id="frm">
+		<div class="form-group">
+				<label for="txtID" class="col-md-12">•ID</label>
+				<div class="col-md-12">
+					<h:inputText id="txtID"
+						value="#{editarTasaInteresBean.id}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<br/>
+			<div class="form-group">
+				<div class="col-sm-12">
+					
+					<h:commandButton action="#{editarTasaInteresBean.doBuscarTasa()}"
+						class="btn btn-success" value="Buscar" />
+						<br/><br/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtDiaDesde" class="col-md-12">•Dia Desde</label>
+				<div class="col-md-12">
+					<h:inputText id="txtDiaDesde"
+						value="#{editarTasaInteresBean.diaDesde}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtDiaHasta" class="col-md-12">•Dia Hasta</label>
+				<div class="col-md-12">
+					<h:inputText id="txtDiaHasta"
+						value="#{editarTasaInteresBean.diaHasta}"
+						class="form-control form-control-line" />
+						
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtInteres" class="col-md-12">•% de Interes</label>
+				<div class="col-md-12">
+					<h:inputText id="txtInteres"
+						value="#{editarTasaInteresBean.tasaInteres}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="txtTipoCuenta" class="col-md-12">•Tipo de Cuenta</label>
+				<div class="col-md-12">
+					<h:inputText id="txtTipoCuenta" disabled="true"
+						value="#{editarTasaInteresBean.tipoCuenta.tipoCuenta}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+
+			<h:messages globalOnly="true" />
+			<div class="form-group">
+				<div class="col-sm-12">
+					<br />
+					<h:commandButton action="#{editarTasaInteresBean.eliminarTasa()}"
+						class="btn btn-success" value="Eliminar" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

@@ -63,4 +63,9 @@ public class GestionTipoCuentaON {
 		}
 		return true;
 	}
+	
+	public TipoCuenta buscarPoNombre(String tipCuenta){
+		//TipoCuenta tipo = new TipoCuenta();
+		return daoTipoCuenta.buscarPorNombre(tipCuenta);
+	}
 }

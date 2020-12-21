@@ -2,32 +2,36 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.validation.constraints.Email;
-
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "ef_personas")
 public class Persona implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@JoinColumn(name = "per_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "per_id")
 	private int id;
+	@Column(name = "per_cedula")
 	private String cedula;
+	@Column(name = "per_nombres")
 	private String nombres;
+	@Column(name = "per_apellidos")
 	private String apellidos;
+	@Column(name = "per_direccion")
 	private String direccion;
+	@Column(name = "per_telefono")
 	private String tefefono;
-	private Date fechaNacimiento;
-	
-	@Email
+	@Column(name = "per_fecha_nacimiento")
+	private String fechaNacimiento;
+	@Column(name = "per_correo")
 	private String correo;
 
 	public int getId() {
@@ -78,11 +82,11 @@ public class Persona implements Serializable {
 		this.tefefono = tefefono;
 	}
 
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 

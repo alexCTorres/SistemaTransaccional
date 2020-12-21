@@ -29,8 +29,8 @@ public class PersonasBean {
 		this.newPersona = newPersona;
 	}
 
-	public String doSaluda() {
-		System.out.println("Hola " + newPersona);
-		return null;
+	public String doSaludar() {
+		System.out.println("Hola ");
+		return "login";
 	}
 }

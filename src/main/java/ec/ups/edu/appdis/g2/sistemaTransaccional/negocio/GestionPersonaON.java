@@ -64,4 +64,8 @@ public class GestionPersonaON  {
 		
 		return true;
 	}
+	
+	 public int obtenerCodigo() {
+		 return daoPersona.extraerCOdigo();
+	 }
 }

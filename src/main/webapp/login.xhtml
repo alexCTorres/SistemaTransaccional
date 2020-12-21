@@ -1,15 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
-<body> 
-<h:form>
-	<h:outputLabel value="Nombre" />
-	<h:inputText value="#{personasBean.nombres}" />
-	<h:commandButton value="Buscar" action="#{personasBean.doSaluda()}"></h:commandButton>
-</h:form>
-</body> 
+<ui:composition template="html/template-login.xhtml">
+	<ui:define name="title">
+        Iniciar Sesión 
+    </ui:define>
+	<ui:define name="contenido">
+		<h:form class="form-horizontal form-material" id="frm">
+			<div class="form-group">
+				<label for="txtUser" class="col-md-12">Usuario</label>
+				<div class="col-md-12">
+					<h:inputText id="txtUser"
+						value="#{loginBean.newUsuario.nombreUsuario}"
+						class="form-control form-control-line" />
+					<h:message for="txtUser" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtPass" class="col-md-12">Contraseña</label>
+				<div class="col-md-12">
+					<h:inputSecret id="txtPass"
+						value="#{loginBean.newUsuario.contrasenia}"
+						class="form-control form-control-line" />
+					<h:message for="txtPass" />
+				</div>
+			</div>
+			<h:messages globalOnly="true" />
+			
+			<div class="form-group">
+				<div class="col-sm-12">
+					<h:commandButton action="#{loginBean.doIniciarSesion()}" class="btn btn-success" value="Ingresar" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
 </html>

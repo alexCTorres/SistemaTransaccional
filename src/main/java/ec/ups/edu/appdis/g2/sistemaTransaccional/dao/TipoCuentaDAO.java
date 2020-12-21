@@ -2,10 +2,14 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.TasaInteres;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.TipoCuenta;
 
 @Stateless
@@ -40,5 +44,14 @@ public class TipoCuentaDAO {
 		TipoCuenta tipoCuenta = em.find(TipoCuenta.class, id);
 		em.remove(tipoCuenta);
 		return true;
+	}
+	public TipoCuenta buscarPorNombre(String tipCuenta){
+		String jpql = "Select t FROM TipoCuenta t where tipoCuenta = ?1";
+		TipoCuenta tipc = new TipoCuenta();
+		Query q = em.createQuery(jpql);
+		q.setParameter(1, tipCuenta);
+		tipc = (TipoCuenta) q.getSingleResult();
+		System.out.println("encontrado DAO Tpo cuenta: " +tipc.getTipoCuenta());
+		return tipc;
 	}
 }

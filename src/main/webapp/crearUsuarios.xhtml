@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="html/templateCrearUsuarios.xhtml">
+	<ui:define name="title">
+        Crear Usuarios.
+    </ui:define>
+	<ui:define name="contenido">
+		<h:form class="homepage_invitee_form" id="frm">
+			<div class="form-group">
+				<label for="txtNombres" class="col-md-12">•Nombres</label>
+				<div class="col-md-12">
+					<h:inputText id="txtNombres" a:placeholder="example nombres"
+						value="#{usuarioBean.newPersona.nombres}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtApellidos" class="col-md-12">•Apellidos</label>
+				<div class="col-md-12">
+					<h:inputText id="txtApellidos" a:placeholder="example apellidos"
+						value="#{usuarioBean.newPersona.apellidos}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtCedula" class="col-md-12">•Cédula</label>
+				<div class="col-md-12">
+					<h:inputText id="txtCedula" a:placeholder="10 digitos"
+						value="#{usuarioBean.newPersona.cedula}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtCorreo" class="col-md-12">•Correo Electrónico</label>
+				<div class="col-md-12">
+					<h:inputText id="txtCorreo" a:placeholder="example@example.com"
+						value="#{usuarioBean.newPersona.correo}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtDireccion" class="col-md-12">•Dirección</label>
+				<div class="col-md-12">
+					<h:inputText id="txtDireccion" a:placeholder="example address"
+						value="#{usuarioBean.newPersona.direccion}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtFechaNacimiento" class="col-md-12">•Fecha de
+					Nacimiento</label>
+				<div class="col-md-12">
+					<h:inputText value="#{usuarioBean.newPersona.fechaNacimiento}"
+						a:placeholder="mm/dd/yyyy" id="fechaNacimiento"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtTelefono" class="col-md-12">•Teléfono</label>
+				<div class="col-md-12">
+					<h:inputText id="txtTelefono"
+						value="#{usuarioBean.newPersona.tefefono}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtUser" class="col-md-12">•Nombre de Usuario</label>
+				<div class="col-md-12">
+					<h:inputText id="txtUser"
+						value="#{usuarioBean.newUsuario.nombreUsuario}"
+						class="form-control form-control-line" />
+					<h:message for="txtUser" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtPass" class="col-md-12">•Contraseña</label>
+				<div class="col-md-12">
+					<h:inputSecret id="txtPass"
+						value="#{usuarioBean.newUsuario.contrasenia}"
+						class="form-control form-control-line" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="txtRol" class="col-md-12">•Rol</label>
+				<div class="col-md-12">
+					<h:selectOneMenu value="#{usuarioBean.newUsuario.rol}" class="form-control form-control-line">
+						<f:selectItem itemValue="ADMINISTRADOR" itemLabel="ADMINISTRADOR" />
+						<f:selectItem itemValue="CAJERO" itemLabel="CAJERO" />
+						<f:selectItem itemValue="ASISTENTE DE CAPTACIONES"
+							itemLabel="ASISTENTE DE CAPTACIONES" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+			<h:messages globalOnly="true" />
+			<div class="form-group">
+				<div class="col-sm-12">
+					<br />
+					<h:commandButton action="#{usuarioBean.doGuardarUsuario()}"
+						class="btn btn-success" value="Guardar" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

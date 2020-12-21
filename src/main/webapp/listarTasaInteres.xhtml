@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="html/templateParametrizarTasaInteres.xhtml">
+	<ui:define name="title">
+        TASAS DE INTERES VIGENTES
+    </ui:define>
+	<ui:define name="contenido">
+	<h:form>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="table-responsive">
+						<h:dataTable value="#{tasaInteresBean.listaTasaInteres}"
+							var="tasa" class="table">
+							<h:column>
+								<f:facet name="header">ID</f:facet>
+			#{tasa.id}
+			</h:column>
+							<h:column>
+								<f:facet name="header">DIA DESDE</f:facet>
+			#{tasa.diaDesde}
+			</h:column>
+							<h:column>
+								<f:facet name="header">DIA HASTA</f:facet>
+			#{tasa.diaHasta}
+			</h:column>
+							<h:column>
+								<f:facet name="header">% INTERÉS</f:facet>
+			#{tasa.tasaInteres}
+			</h:column>
+							<h:column>
+								<f:facet name="header">TIPO DE CUENTA</f:facet>
+			#{tasa.tipoCuenta.tipoCuenta}
+			</h:column>
+							<h:column>
+								<f:facet name="header">ACCIÓN</f:facet>
+								<h:commandButton action="#{editarTasaInteresBean.irPaginaEditar(tasa.id)}" 
+								value="Editar" />
+									<!-- class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light" /> -->
+							</h:column>
+
+						</h:dataTable>
+					</div>
+				</div>
+			</div>
+		</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

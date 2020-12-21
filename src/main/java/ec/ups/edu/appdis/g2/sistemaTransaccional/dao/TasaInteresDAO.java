@@ -2,10 +2,13 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.TasaInteres;
 
 @Stateless
@@ -40,5 +43,19 @@ public class TasaInteresDAO {
 		TasaInteres tasaInteres = em.find(TasaInteres.class, id);
 		em.remove(tasaInteres);
 		return true;
+	}
+	
+	public List<TasaInteres> listaTasaI(){
+		String jpql = "Select t FROM TasaInteres t";
+		Query q = em.createQuery(jpql,TasaInteres.class);
+		return (List<TasaInteres>) q.getResultList();
+	}
+	
+	public int extraerCOdigo() {
+		String jpql = "select max(e.id) from TasaInteres e";
+		//select max(e.tas_id) from ef_tasa_interes e
+		Query q = em.createQuery(jpql,Integer.class);
+		int cod = q.getMaxResults();
+		return cod+1;
 	}
 }

@@ -1,6 +1,7 @@
 package ec.ups.edu.appdis.g2.sistemaTransaccional.negocio;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,10 +17,11 @@ public class GestionTasaInteresON {
 	public boolean registrarTasaInteres(TasaInteres tasaInteres) throws Exception {
 		try {
 			daoTasaInteres.insertJPA(tasaInteres);
+			System.out.println("Insertado corectamente DAO interes ");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new Exception("Error al registrar");
+			return false;
 		}
 		return true;
 	}
@@ -61,5 +63,13 @@ public class GestionTasaInteresON {
 			throw new Exception("Error al registrar");
 		}
 		return true;
+	}
+	
+	public List<TasaInteres> getTasaInteres(){
+		return daoTasaInteres.listaTasaI();
+	}
+	
+	public int extraerCodigo() {
+		return daoTasaInteres.extraerCOdigo();
 	}
 }
