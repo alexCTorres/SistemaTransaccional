@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="html/templateDepositosRetiros.xhtml">
+	<ui:define name="title">
+        Movimientos(Retiros y Depositos)
+    </ui:define>
+	<ui:define name="contenido">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="table-responsive">
+						<h:dataTable value="#{movimientosBean.listaMoviemientos}" var="movimientos"
+							class="table">
+							<h:column>
+								<f:facet name="header">NÚMERO DE CUENTA</f:facet>
+			#{movimientos.cuenta.numeroCuenta}
+			</h:column>
+							
+			<h:column>
+								<f:facet name="header">TIPO CUENTA</f:facet>
+			#{movimientos.cuenta.tipoCuenta.tipoCuenta}
+			</h:column>
+							<h:column>
+								<f:facet name="header">FECHA</f:facet>
+			   #{movimientos.fecha}
+			</h:column>
+							<h:column >
+								<f:facet name="header">MONTO</f:facet>
+			#{movimientos.monto}
+			</h:column>
+							<h:column>
+								<f:facet name="header">PERSONA</f:facet>
+			#{movimientos.cuenta.persona.nombres}  #{movimientos.cuenta.persona.apellidos}
+			</h:column>
+			<h:column>
+								<f:facet name="header">TIPO</f:facet>
+			#{movimientos.tipo}
+			</h:column>
+						</h:dataTable>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+</html>

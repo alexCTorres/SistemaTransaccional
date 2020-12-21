@@ -1,7 +1,6 @@
 
 package ec.ups.edu.appdis.g2.sistemaTransaccional.negocio;
 
-import java.io.InputStream;
 import java.util.Date;
 import java.util.Properties;
 import javax.ejb.Stateless;
@@ -10,7 +9,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Cuenta;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Persona;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Usuario;
 
 @Stateless
@@ -55,6 +55,25 @@ public class GestionCorreoElectronico {
 				+"\nNumero de intentos activos: " +u.getIntentosLogin() + ", se bloqueará la cuenta al culminar los intentos."
 				+ "\nFecha: "+ new Date();
 		enviarCOrreo(u.getPersona().getCorreo(), "Ingreso Inválido", mensaje);
+	}
+	
+	public void envioMailRegistroCuenta(Usuario u, Cuenta c) {
+		String mensaje= "Estimado/a: " +u.getPersona().getNombres() + " "+ u.getPersona().getApellidos()
+				+"\nSe realizó la creación de la cuenta en el Sistema Transaccional UPS"
+				+"\nUsuario: " +u.getNombreUsuario() + " Contraseña: " +u.getContrasenia() 
+				+"\nTipo de Cuenta: " +c.getTipoCuenta().getTipoCuenta()
+				+"\nSaldo: " +c.getSaldo()+ "  Número de Cuenta: " +c.getNumeroCuenta()
+				+ "\nFecha: "+ new Date();
+		enviarCOrreo(u.getPersona().getCorreo(), "Creación de Cuenta UPS", mensaje);
+	}
+	
+	public void envioMailAgregarCuenta(Persona p, Cuenta c) {
+		String mensaje= "Estimado/a: " +p.getNombres()+ " "+ p.getApellidos()
+				+"\nSe realizó la agregación de una cuenta a su usuario en el Sistema Transaccional UPS"
+				+"\nTipo de Cuenta: " +c.getTipoCuenta().getTipoCuenta()
+				+"\nSaldo: " +c.getSaldo()+ "  Número de Cuenta: " +c.getNumeroCuenta()
+				+ "\nFecha: "+ new Date();
+		enviarCOrreo(p.getCorreo(), "Creación de Cuenta UPS", mensaje);
 	}
 	
 }

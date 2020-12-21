@@ -60,4 +60,13 @@ public class PersonaDAO {
 		int cod = q.getMaxResults();
 		return cod;
 	}
+	
+	public Persona buscarPorCedula(String cedula) {
+		String jpql = "Select p FROM Persona p where cedula = ?1";
+		Persona p = new Persona();
+		Query q = em.createQuery(jpql);
+		q.setParameter(1, cedula);
+		p = (Persona) q.getSingleResult();
+		return p;
+	}
 }

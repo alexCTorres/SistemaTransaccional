@@ -1,6 +1,7 @@
 package ec.ups.edu.appdis.g2.sistemaTransaccional.negocio;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -63,5 +64,9 @@ public class GestionMovimientosON {
 			throw new Exception("Error al registrar");
 		}
 		return true;
+	}
+	
+	public List<Movimientos> getMovimientis(){
+		return daoMovimientos.listaMovimientos();
 	}
 }

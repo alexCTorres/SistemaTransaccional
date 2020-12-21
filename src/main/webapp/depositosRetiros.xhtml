@@ -5,27 +5,27 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-<ui:composition template="html/templateAperturaCuentas.xhtml">
+<ui:composition template="html/templateDepositosRetiros.xhtml">
 	<ui:define name="title">
-        Agregar Cuenta a Usuario creado.
+        Depósitos y Retiros.
     </ui:define>
 	<ui:define name="contenido">
-	<h3>*Asignar una cuenta</h3>
+	<h3>*Buscar Cuenta</h3>
 	<br/>
 		<h:form class="homepage_invitee_form" id="frma">
 			<h:panelGrid columns="4">
 			<div class="form-group">
-					<label for="txtCed" class="col-md-12">•Cedula de Usuario a Buscar</label>
+					<label for="txtNUmC" class="col-md-12">•Número de Cuenta</label>
 					<div class="col-md-12">
-						<h:inputText id="txtCed" a:placeholder="xxxxxxxxxx"
-							value="#{cuentasBean.newPersona.cedula}"
+						<h:inputText id="txtNUmC" a:placeholder="xxxxxxxxxxxx"
+							value="#{movimientosBean.newCuenta.numeroCuenta}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
 			<div class="form-group">
 				<div class="col-sm-12">
 					<br />
-					<h:commandButton action="#{cuentasBean.doBuscarPersona()}"
+					<h:commandButton action="#{movimientosBean.doBuscarCuenta()}"
 						class="btn btn-success" value="Buscar" />
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 					<label for="txtNombres" class="col-md-12">•Nombres</label>
 					<div class="col-md-12">
 						<h:inputText id="txtNombres" disabled="true"
-							value="#{cuentasBean.newPersona.nombres}"
+							value="#{movimientosBean.newPersona.nombres}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 					<label for="txtApellidos" class="col-md-12">•Apellidos</label>
 					<div class="col-md-12">
 						<h:inputText id="txtApellidos" disabled="true"
-							value="#{cuentasBean.newPersona.apellidos}"
+							value="#{movimientosBean.newPersona.apellidos}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 					<label for="txtCedula" class="col-md-12">•Cédula</label>
 					<div class="col-md-12">
 						<h:inputText id="txtCedula" disabled="true"
-							value="#{cuentasBean.newPersona.cedula}"
+							value="#{movimientosBean.newPersona.cedula}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 					<div class="col-md-12">
 						<br />
 						<h:inputText id="txtCorreo" disabled="true"
-							value="#{cuentasBean.newPersona.correo}"
+							value="#{movimientosBean.newPersona.correo}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -74,7 +74,7 @@
 					<label for="txtDireccion" class="col-md-12">•Dirección</label>
 					<div class="col-md-12">
 						<h:inputText id="txtDireccion" disabled="true"
-							value="#{cuentasBean.newPersona.direccion}"
+							value="#{movimientosBean.newPersona.direccion}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -82,7 +82,7 @@
 					<label for="txtFechaNacimiento" class="col-md-12">•Fecha de
 						Nacimiento</label>
 					<div class="col-md-12">
-						<h:inputText value="#{cuentasBean.newPersona.fechaNacimiento}"
+						<h:inputText value="#{movimientosBean.newPersona.fechaNacimiento}"
 							disabled="true" id="fechaNacimiento"
 							class="form-control form-control-line" />
 					</div>
@@ -92,28 +92,69 @@
 					<div class="col-md-12">
 						<br />
 						<h:inputText id="txtTelefono" disabled="true"
-							value="#{cuentasBean.newPersona.tefefono}"
+							value="#{movimientosBean.newPersona.tefefono}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
 			</h:panelGrid>
-			<h3>*Datos de la cuenta</h3>
+			
+			<h3>*Datos de la Cuenta</h3>
+		<br/>
+
+			<h:panelGrid columns="6">
+				<div class="form-group">
+					<label for="txtNumCUe" class="col-md-12">•Numero de Cuenta</label>
+					<div class="col-md-12">
+						<h:inputText id="txtNumCUe" disabled="true"
+							value="#{movimientosBean.newCuenta.numeroCuenta}"
+							class="form-control form-control-line" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txtEstado" class="col-md-12">•Estado</label>
+					<div class="col-md-12">
+						<h:inputText id="txtEstado" disabled="true"
+							value="#{movimientosBean.newCuenta.estado}"
+							class="form-control form-control-line" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txtSaldoC" class="col-md-12">•Saldo $</label>
+					<div class="col-md-12">
+						<h:inputText id="txtSaldoC" disabled="true"
+							value="#{movimientosBean.newCuenta.saldo}"
+							class="form-control form-control-line" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<br /> <label for="txtTipCue" class="col-md-12">•Tipo de Cuenta</label>
+					<div class="col-md-12">
+						<br />
+						<h:inputText id="txtTipCue" disabled="true"
+							value="#{movimientosBean.newTipoCuenta.tipoCuenta}"
+							class="form-control form-control-line" />
+					</div>
+				</div>
+			</h:panelGrid>
+			
+			<h3>*Acciones</h3>
 			<br/>
 			<h:panelGrid columns="4">
 				<div class="form-group">
-					<label for="txtSaldo" class="col-md-12">•Saldo de la Cuenta</label>
+					<label for="txtSaldo" class="col-md-12">•Monto $</label>
 					<div class="col-md-12">
 						<h:inputText id="txtSaldo" a:placeholder="0.00"
-							value="#{cuentasBean.newCuenta.saldo}"
+							value="#{movimientosBean.newMovimiento.monto}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
 							<div class="form-group">
-				<label for="txtTipoCuenta" class="col-md-12">•Tipo de Cuenta</label>
+				<label for="txtTipoCuenta" class="col-md-12">•Tipo de Acción</label>
 				<div class="col-md-12">
-					<h:selectOneMenu value="#{cuentasBean.newTipoCuenta.tipoCuenta}" class="form-control form-control-line">
-						<f:selectItem itemValue="CUENTA AHORROS" itemLabel="CUENTA AHORROS" />
-						<f:selectItem itemValue="CUENTA CORRIENTE" itemLabel="CUENTA CORRIENTE" />
+					<h:selectOneMenu value="#{movimientosBean.newMovimiento.tipo}" class="form-control form-control-line">
+						<f:selectItem itemValue="DEPÓSITO" itemLabel="DEPÓSITO" />
+						<f:selectItem itemValue="RETIRO" itemLabel="RETIRO" />
 					</h:selectOneMenu>
 				</div>
 			</div>
@@ -121,7 +162,7 @@
 			<div class="form-group">
 				<div class="col-sm-12">
 					<br />
-					<h:commandButton action="#{cuentasBean.doAgregarCuenta()}"
+					<h:commandButton action="#{movimientosBean.guardarMovimiento()}"
 						class="btn btn-success" value="Guardar" />
 				</div>
 			</div>

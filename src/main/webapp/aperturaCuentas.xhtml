@@ -10,7 +10,7 @@
         Apertura de Cuentas.
     </ui:define>
 	<ui:define name="contenido">
-		<h3>Datos del Usuario</h3>
+		<h3>*Datos del Usuario</h3>
 		<br/>
 		<h:form class="homepage_invitee_form" id="frm">
 			<h:panelGrid columns="6">
@@ -33,7 +33,7 @@
 				<div class="form-group">
 					<label for="txtCedula" class="col-md-12">•Cédula</label>
 					<div class="col-md-12">
-						<h:inputText id="txtCedula" a:placeholder="10 digitos"
+						<h:inputText id="txtCedula" a:placeholder="10 digitos..."
 							value="#{cuentasBean.newPersona.cedula}"
 							class="form-control form-control-line" />
 					</div>
@@ -70,24 +70,15 @@
 					<br /> <label for="txtTelefono" class="col-md-12">•Teléfono</label>
 					<div class="col-md-12">
 						<br />
-						<h:inputText id="txtTelefono" a:placeholder="xxxxxxxxxx"
+						<h:inputText id="txtTelefono" a:placeholder="Solo numeros..."
 							value="#{cuentasBean.newPersona.tefefono}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
 			</h:panelGrid>
-			<h3>Datos de la cuenta</h3>
+			<h3>*Datos de la cuenta</h3>
 			<br/>
 			<h:panelGrid columns="4">
-				<div class="form-group">
-					<label for="txtNumCuenta" class="col-md-12">•Numero de
-						Cuenta</label>
-					<div class="col-md-12">
-						<h:inputText id="txtNumCuenta" disabled="true" 
-							value="#{cuentasBean.newCuenta.numeroCuenta}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
 				<div class="form-group">
 					<label for="txtSaldo" class="col-md-12">•Saldo de la Cuenta</label>
 					<div class="col-md-12">
@@ -96,6 +87,15 @@
 							class="form-control form-control-line" />
 					</div>
 				</div>
+							<div class="form-group">
+				<label for="txtTipoCuenta" class="col-md-12">•Tipo de Cuenta</label>
+				<div class="col-md-12">
+					<h:selectOneMenu value="#{cuentasBean.newTipoCuenta.tipoCuenta}" class="form-control form-control-line">
+						<f:selectItem itemValue="CUENTA AHORROS" itemLabel="CUENTA AHORROS" />
+						<f:selectItem itemValue="CUENTA CORRIENTE" itemLabel="CUENTA CORRIENTE" />
+					</h:selectOneMenu>
+				</div>
+			</div>
 			</h:panelGrid>
 			<div class="form-group">
 				<div class="col-sm-12">

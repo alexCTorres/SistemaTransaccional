@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.management.Query;
 import javax.persistence.EntityManager;
-
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Cuenta;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Persona;
 
 @Stateless
 public class CuentaDAO {
@@ -14,6 +15,7 @@ public class CuentaDAO {
 	@Inject
 	private EntityManager em;
 
+	@Inject
 	private Connection con;
 
 	// metodo de insertar con JPA utilizando el Entity manager
@@ -40,4 +42,5 @@ public class CuentaDAO {
 		em.remove(c);
 		return true;
 	}
+
 }

@@ -2,11 +2,15 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Movimientos;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Usuario;
 
 @Stateless
 public class MovimientosDAO {
@@ -40,5 +44,11 @@ public class MovimientosDAO {
 		Movimientos m = em.find(Movimientos.class, id);
 		em.remove(m);
 		return true;
+	}
+	
+	public List<Movimientos> listaMovimientos(){
+		String jpql = "Select m FROM Movimientos m";
+		Query q = em.createQuery(jpql,Movimientos.class);
+		return (List<Movimientos>) q.getResultList();
 	}
 }
