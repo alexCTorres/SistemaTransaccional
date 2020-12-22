@@ -1,11 +1,73 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-<h:head></h:head> 
-<body> 
 
-</body> 
+<ui:composition template="html/templateCliente.xhtml">
+
+	<ui:define name="title">
+		<h2>Bienvenido/a</h2>
+	</ui:define>
+	<ui:define name="contenido">
+		<h2>*CONSULTE SUS CUENTAS</h2>
+		<br />
+		<h:form class="homepage_invitee_form" id="frma">
+			<h:panelGrid columns="4">
+				<div class="form-group">
+					<label for="txtNUmC" class="col-md-12">•Usuario</label>
+					<div class="col-md-12">
+						<h:inputText id="txtNUmC" a:placeholder="Ingrese su cedula..."
+							value="#{clientesBean.newPersona.cedula}"
+							class="form-control form-control-line" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-12">
+						<br />
+						<h:commandButton action="#{clientesBean.reloadCuentas()}"
+							class="btn btn-success" value="Buscar" />
+					</div>
+				</div>
+				<br />
+			</h:panelGrid>
+		</h:form>
+		<br />
+		<h:dataTable value="#{clientesBean.listaCuentas}" var="clientes"
+			class="table">
+			<h:column>
+				<f:facet name="header">NÚMERO DE CUENTA</f:facet>
+			#{clientes.numeroCuenta}
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">TIPO CUENTA</f:facet>
+			#{clientes.tipoCuenta.tipoCuenta}
+			</h:column>
+			<h:column>
+				<f:facet name="header">SALDO</f:facet>
+			   #{clientes.saldo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">ESTADO</f:facet>
+			   #{clientes.estado}
+			</h:column>
+			<h:column>
+				<f:facet name="header">PROPIETARIO</f:facet>
+			   #{clientes.persona.nombres} #{clientes.persona.apellidos}
+			</h:column>
+			<h:column>
+				<f:facet name="header">CONSULTAR MOVIMIENTOS</f:facet>
+				<h:commandButton
+					class="btn btn-info "
+					value="IR" 
+				  />
+			</h:column>
+		</h:dataTable>
+
+	</ui:define>
+
+</ui:composition>
 </html>

@@ -2,6 +2,7 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.vista;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -29,6 +30,9 @@ public class CuentasBean implements Serializable {
 	private Persona newPersona;
 
 	private TipoCuenta newTipoCuenta;
+	
+	private List<Cuenta> listCuentas;
+	
 
 	private Usuario newUsuario;
 
@@ -53,6 +57,30 @@ public class CuentasBean implements Serializable {
 		newPersona = new Persona();
 		newTipoCuenta = new TipoCuenta();
 		newUsuario = new Usuario();
+		doListarCuentas();
+	}
+	
+
+	public List<Cuenta> getListCuentas() {
+		return listCuentas;
+	}
+
+
+
+	public void setListCuentas(List<Cuenta> listCuentas) {
+		this.listCuentas = listCuentas;
+	}
+
+
+
+	public Usuario getNewUsuario() {
+		return newUsuario;
+	}
+
+
+
+	public void setNewUsuario(Usuario newUsuario) {
+		this.newUsuario = newUsuario;
 	}
 
 	public Cuenta getNewCuenta() {
@@ -205,6 +233,10 @@ public class CuentasBean implements Serializable {
 		int res = n * 100;
 
 		return nombre + res;
+	}
+	
+	public void doListarCuentas() {
+		listCuentas = cuentaON.listarCuentasALL();
 	}
 	
 }

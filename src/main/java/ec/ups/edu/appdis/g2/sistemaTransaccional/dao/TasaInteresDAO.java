@@ -45,12 +45,14 @@ public class TasaInteresDAO {
 		return true;
 	}
 	
+	//listar tasa de interes jpa
 	public List<TasaInteres> listaTasaI(){
 		String jpql = "Select t FROM TasaInteres t";
 		Query q = em.createQuery(jpql,TasaInteres.class);
 		return (List<TasaInteres>) q.getResultList();
 	}
 	
+	//ectraer el codigo maximo pk de la tasa de interes
 	public int extraerCOdigo() {
 		String jpql = "select max(e.id) from TasaInteres e";
 		//select max(e.tas_id) from ef_tasa_interes e

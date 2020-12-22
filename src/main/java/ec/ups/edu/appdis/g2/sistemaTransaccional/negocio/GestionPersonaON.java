@@ -65,10 +65,7 @@ public class GestionPersonaON  {
 		return true;
 	}
 	
-	 public int obtenerCodigo() {
-		 return daoPersona.extraerCOdigo();
-	 }
-	 
+
 	 public Persona buscarPorCed(String cedula) {
 		 Persona p = new Persona();
 		 p = daoPersona.buscarPorCedula(cedula);

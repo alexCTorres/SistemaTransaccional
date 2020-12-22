@@ -1,6 +1,7 @@
 package ec.ups.edu.appdis.g2.sistemaTransaccional.negocio;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -47,11 +48,11 @@ public class GestionCuentaON {
 		return c;
 	}
 
-	public boolean eliminarCuenta(String numCuenta) {
-		return true;
+	public List<Cuenta> listaCuentas(int id){
+		return daoCuenta.listaCUentas(id);
 	}
-
-	public boolean enviarCorreoDatosCuenta(String correo) {
-		return true;
+	
+	public List<Cuenta> listarCuentasALL(){
+		return daoCuenta.listaCuentas();
 	}
 }

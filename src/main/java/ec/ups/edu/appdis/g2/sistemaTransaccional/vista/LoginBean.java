@@ -2,7 +2,6 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.vista;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -10,7 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Registro;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Usuario;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.negocio.GestionCorreoElectronico;
@@ -46,6 +44,7 @@ public class LoginBean implements Serializable {
 	public void setNewUsuario(Usuario newUsuario) {
 		this.newUsuario = newUsuario;
 	}
+	
 
 	public String doIniciarSesion() {
 		Registro reg = new Registro();
@@ -64,16 +63,16 @@ public class LoginBean implements Serializable {
 						usuarioON.actualizarUsuario(u);
 						registroON.registrarRegistro(reg);
 						if(u.getRol().equals("ADMINISTRATIVO")) {
-						//	envioCorreoON.envioMailIngresoValido(u);
+							envioCorreoON.envioMailIngresoValido(u);
 							return "vistaAdministrador?faces-redirect=true";
 						}else if(u.getRol().equals("CAJERO")) {
-							//envioCorreoON.envioMailIngresoValido(u);
+							envioCorreoON.envioMailIngresoValido(u);
 							return "vistaCajero?faces-redirect=true";
 						}else if(u.getRol().equals("ASISTENTE DE CAPTACIONES")) {
-							//envioCorreoON.envioMailIngresoValido(u);
+							envioCorreoON.envioMailIngresoValido(u);
 							return "vistaAsistenteCaptaciones?faces-redirect=true";
 						}else {
-							//envioCorreoON.envioMailIngresoValido(u);
+							envioCorreoON.envioMailIngresoValido(u);
 							return "vistaUsuariosSistema?faces-redirect=true";
 						}			
 				}else{
@@ -90,7 +89,7 @@ public class LoginBean implements Serializable {
 					usuarioON.actualizarUsuario(u);
 					registroON.registrarRegistro(reg);
 					FacesContext.getCurrentInstance().addMessage(null, msgI);
-					//envioCorreoON.envioMailIngresoInValido(u);
+					envioCorreoON.envioMailIngresoInValido(u);
 					return null;
 				 }
 				}

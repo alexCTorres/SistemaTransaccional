@@ -45,6 +45,8 @@ public class TipoCuentaDAO {
 		em.remove(tipoCuenta);
 		return true;
 	}
+	
+	//metodo para buscar un tipo cuenta medinate el nombre
 	public TipoCuenta buscarPorNombre(String tipCuenta){
 		String jpql = "Select t FROM TipoCuenta t where tipoCuenta = ?1";
 		TipoCuenta tipc = new TipoCuenta();

@@ -52,7 +52,7 @@ public class UsuarioDAO {
 
 	}
 
-
+	//buscar usuario por nombre medinate jdbc
 	public Usuario buscarPorUsuarioJPA(String usuario) throws SQLException {
 		System.out.println("entra al sql");
 		String sql = "SELECT u FROM ef_usuarios u WHERE u.usu_nombre_usuario=?1";
@@ -83,6 +83,7 @@ public class UsuarioDAO {
 		return true;
 	}
 	
+	//listar todos los usuarios creados
 	public List<Usuario> listaUsuarios(){
 		String jpql = "Select u FROM Usuario u";
 		Query q = em.createQuery(jpql,Usuario.class);

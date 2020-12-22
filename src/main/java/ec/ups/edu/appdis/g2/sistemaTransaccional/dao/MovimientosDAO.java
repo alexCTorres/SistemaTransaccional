@@ -46,6 +46,7 @@ public class MovimientosDAO {
 		return true;
 	}
 	
+	//listar todos los movimientos por jpa 
 	public List<Movimientos> listaMovimientos(){
 		String jpql = "Select m FROM Movimientos m";
 		Query q = em.createQuery(jpql,Movimientos.class);

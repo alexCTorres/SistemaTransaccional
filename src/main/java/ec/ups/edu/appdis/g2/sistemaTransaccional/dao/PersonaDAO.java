@@ -54,13 +54,7 @@ public class PersonaDAO {
 		return true;
 	}
 	
-	public int extraerCOdigo() {
-		String jpql = "select max(e.per_id) from ef_personas e";
-		Query q = em.createQuery(jpql);
-		int cod = q.getMaxResults();
-		return cod;
-	}
-	
+//metodo para buscar una persona mediante la cedula
 	public Persona buscarPorCedula(String cedula) {
 		String jpql = "Select p FROM Persona p where cedula = ?1";
 		Persona p = new Persona();

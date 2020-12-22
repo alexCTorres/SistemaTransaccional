@@ -10,105 +10,46 @@
 Listar Cuentas
     </ui:define>
 	<ui:define name="contenido">
-		<h3>*Datos del Usuario</h3>
-		<br />
-		<h:form class="homepage_invitee_form" id="frm">
-			<h:panelGrid columns="6">
-				<div class="form-group">
-					<label for="txtNombres" class="col-md-12">•Nombres</label>
-					<div class="col-md-12">
-						<h:inputText id="txtNombres" a:placeholder="example nombres"
-							value="#{cuentasBean.newPersona.nombres}"
-							class="form-control form-control-line" />
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="table-responsive">
+						<h:dataTable value="#{cuentasBean.listCuentas}" var="cuenta"
+							class="table">
+							<h:column>
+								<f:facet name="header">NÚMERO DE CUENTA</f:facet>
+			#{cuenta.numeroCuenta}
+			</h:column>
+							
+			<h:column>
+								<f:facet name="header">ESTADO</f:facet>
+			#{cuenta.estado}
+			</h:column>
+							<h:column>
+								<f:facet name="header">FECHA APERTURA</f:facet>
+			   #{cuenta.fechaApertura}
+			</h:column>
+							<h:column >
+								<f:facet name="header">SALDO</f:facet>
+			#{cuenta.saldo}
+			</h:column>
+							<h:column>
+								<f:facet name="header">PERSONA</f:facet>
+			#{cuenta.persona.nombres}  #{cuenta.persona.apellidos}
+			</h:column>
+			<h:column>
+								<f:facet name="header">CEDULA</f:facet>
+			#{cuenta.persona.cedula}
+			</h:column>
+			<h:column>
+								<f:facet name="header">TIPO CUENTA</f:facet>
+			#{cuenta.tipoCuenta.tipoCuenta}
+			</h:column>
+						</h:dataTable>
 					</div>
-				</div>
-				<div class="form-group">
-					<label for="txtApellidos" class="col-md-12">•Apellidos</label>
-					<div class="col-md-12">
-						<h:inputText id="txtApellidos" a:placeholder="example apellidos"
-							value="#{cuentasBean.newPersona.apellidos}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="txtCedula" class="col-md-12">•Cédula</label>
-					<div class="col-md-12">
-						<h:inputText id="txtCedula" a:placeholder="10 digitos..."
-							value="#{cuentasBean.newPersona.cedula}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-
-				<div class="form-group">
-					<br /> <label for="txtCorreo" class="col-md-12">•Correo
-						Electrónico</label>
-					<div class="col-md-12">
-						<br />
-						<h:inputText id="txtCorreo" a:placeholder="example@example.com"
-							value="#{cuentasBean.newPersona.correo}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="txtDireccion" class="col-md-12">•Dirección</label>
-					<div class="col-md-12">
-						<h:inputText id="txtDireccion" a:placeholder="example address"
-							value="#{cuentasBean.newPersona.direccion}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="txtFechaNacimiento" class="col-md-12">•Fecha de
-						Nacimiento</label>
-					<div class="col-md-12">
-						<h:inputText value="#{cuentasBean.newPersona.fechaNacimiento}"
-							a:placeholder="mm/dd/yyyy" id="fechaNacimiento"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-				<div class="form-group">
-					<br /> <label for="txtTelefono" class="col-md-12">•Teléfono</label>
-					<div class="col-md-12">
-						<br />
-						<h:inputText id="txtTelefono" a:placeholder="Solo numeros..."
-							value="#{cuentasBean.newPersona.tefefono}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-			</h:panelGrid>
-			<h3>*Datos de la cuenta</h3>
-			<br />
-			<h:panelGrid columns="4">
-				<div class="form-group">
-					<label for="txtSaldo" class="col-md-12">•Saldo de la Cuenta</label>
-					<div class="col-md-12">
-						<h:inputText id="txtSaldo" a:placeholder="0.00"
-							value="#{cuentasBean.newCuenta.saldo}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="txtTipoCuenta" class="col-md-12">•Tipo de
-						Cuenta</label>
-					<div class="col-md-12">
-						<h:selectOneMenu value="#{cuentasBean.newTipoCuenta.tipoCuenta}"
-							class="form-control form-control-line">
-							<f:selectItem itemValue="CUENTA AHORROS"
-								itemLabel="CUENTA AHORROS" />
-							<f:selectItem itemValue="CUENTA CORRIENTE"
-								itemLabel="CUENTA CORRIENTE" />
-						</h:selectOneMenu>
-					</div>
-				</div>
-			</h:panelGrid>
-			<div class="form-group">
-				<div class="col-sm-12">
-					<br />
-					<h:commandButton action="#{cuentasBean.doGuardarCuenta()}"
-						class="btn btn-success" value="Guardar" />
 				</div>
 			</div>
-		</h:form>
+		</div>
 	</ui:define>
 
 </ui:composition>
