@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="html/templatePolizas.xhtml">
+	<ui:define name="title">
+        Simular una Póliza
+    </ui:define>
+	<ui:define name="contenido">
+		<h3>•Datos de la Póliza</h3>
+		<br />
+		<h:form class="homepage_invitee_form" id="frm">
+			<h:panelGrid columns="10">
+				<div class="form-group">
+					<label for="txtNombres" class="col-md-12">•Capital $</label>
+					<div class="col-md-12">
+						<h:inputText id="txtNombres" a:placeholder="$00.00"
+							value="#{polizasBean.newPoliza.capital}"
+							class="form-control form-control-line" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txtApellidos" class="col-md-12">•Plazo</label>
+					<div class="col-md-12">
+						<h:inputText id="txtApellidos" a:placeholder="Mayor o igual a 30 dias..."
+							value="#{polizasBean.newPoliza.plazo}"
+							class="form-control form-control-line" />
+					</div>
+				</div>
+			<div class="form-group">
+				<label for="txtTipCuenta" class="col-md-12">•Frecuencia de Pago</label>
+				<div class="col-md-12">
+					<h:selectOneMenu value="#{polizasBean.newPoliza.frecuenciaPago}" class="form-control form-control-line">
+						<f:selectItem itemValue="QUINCENAL" itemLabel="QUINCENAL" />
+						<f:selectItem itemValue="MENSUAL" itemLabel="MENSUAL" />
+					</h:selectOneMenu>					
+				</div>
+			</div>
+		<div class="form-group">
+				<div class="col-md-12">
+					<br />
+					<h:commandButton action="#{polizasBean.calcularPoliza()}"
+						class="btn btn-success" value="CALCULAR" />
+				</div>
+			</div>
+			</h:panelGrid>
+		</h:form>
+		<br />
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="table-responsive">
+						<h:dataTable value="" var="cuenta"
+							class="table">
+							<h:column>
+								<f:facet name="header">CAPITAL</f:facet>
+			
+			</h:column>
+							
+			<h:column>
+								<f:facet name="header">PLAZO</f:facet>
+			
+			</h:column>
+							<h:column>
+								<f:facet name="header">FRECUENCIA PAGO</f:facet>
+			 
+			</h:column>
+							<h:column >
+								<f:facet name="header">FECHA VENCIMIENTO</f:facet>
+			
+			</h:column>
+							<h:column>
+								<f:facet name="header">DIA DE PAGO</f:facet>
+			
+			</h:column>
+			<h:column>
+								<f:facet name="header">INTERES</f:facet>
+		
+			</h:column>
+			<h:column>
+								<f:facet name="header">NUMERO DE CUENTA</f:facet>
+			
+			</h:column>
+						</h:dataTable>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>

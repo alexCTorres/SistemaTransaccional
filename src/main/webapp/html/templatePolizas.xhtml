@@ -102,21 +102,20 @@
 				</h3>
 			</div>
 			<ul class="nav" id="side-menu">
+				<br />
+				<br />
+				<br />
+				<br />
+				<li><a href="simularPoliza.xhtml" class="waves-effect"><i
+						class="fa fa-user fa-fw" aria-hidden="true"></i>Simular una Póliza</a></li>
+				<li><a href="solicitarPoliza.xhtml" class="waves-effect"><i
+						class="fa fa-user fa-fw" aria-hidden="true"></i>Solicitar Póliza</a></li>
 
-				<li style="padding: 70px 0 0;"><a href="" class="waves-effect"><i
-						class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Estados de
-						Cuenta</a></li>
-				<li><a href="../simularPoliza.xhtml" class="waves-effect"><i
-						class="fa fa-user fa-fw" aria-hidden="true"></i>Pólizas</a></li>	
-						
-							<li><a href="depositosRetiros.xhtml" class="waves-effect"><i
-						class="fa fa-user fa-fw" aria-hidden="true"></i>Historial de Acceso</a></li>	
-						
+
 			</ul>
 			<div class="center p-20">
 				<h:form>
-				<br />
-				
+
 					<br />
 					<br />
 					<br />
@@ -125,7 +124,8 @@
 					<br />
 					<br />
 					<br />
-					<br />
+					<br /><br />
+					<br /><br />
 					<br />
 					<br />
 					<br />
@@ -156,81 +156,16 @@
 				</div>
 				<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 					<ol class="breadcrumb">
-						<li class="active">USUARIO DE SISTEMA(CLiente)</li>
+						<li class="active">CLIENTE</li>
 					</ol>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
-			<H2>•CUENTAS EXISTENTES</H2>
 			<div class="row">
-				<h:dataTable value="#{loginBean.listaCuentas}" var="clientes"
-					class="table">
-					<h:column>
-						<f:facet name="header">NÚMERO DE CUENTA</f:facet>
-			#{clientes.numeroCuenta}
-			</h:column>
-
-					<h:column>
-						<f:facet name="header">TIPO CUENTA</f:facet>
-			#{clientes.tipoCuenta.tipoCuenta}
-			</h:column>
-					<h:column>
-						<f:facet name="header">SALDO</f:facet>
-			   #{clientes.saldo}
-			</h:column>
-					<h:column>
-						<f:facet name="header">ESTADO</f:facet>
-			   #{clientes.estado}
-			</h:column>
-					<h:column>
-						<f:facet name="header">PROPIETARIO</f:facet>
-			   #{clientes.persona.nombres} #{clientes.persona.apellidos}
-			</h:column>
-					<h:column>
-						<f:facet name="header">MOVIMIENTOS</f:facet>
-						<h:commandButton
-							action="#{clientesBean.llamarVerMovimientos(clientes.numeroCuenta)}"
-							class="btn btn-info " value="CONSULTAR">
-
-						</h:commandButton>
-					</h:column>
-				</h:dataTable>
-
-				
-			</div>
-			
-				<H2>•HISTORIAL PÓLIZAS</H2>
-			<div class="row">
-				<h:dataTable value="#{loginBean.listaCuentas}" var="clientes"
-					class="table">
-					<h:column>
-						<f:facet name="header">NÚMERO DE PÓLIZA</f:facet>
-			#{clientes.numeroCuenta}
-			</h:column>
-
-					<h:column>
-						<f:facet name="header">PLAZO</f:facet>
-			#{clientes.tipoCuenta.tipoCuenta}
-			</h:column>
-					<h:column>
-						<f:facet name="header">VALOR PÓLIZA</f:facet>
-			   #{clientes.saldo}
-			</h:column>
-					<h:column>
-						<f:facet name="header">INTERÉS</f:facet>
-			   #{clientes.persona.nombres} #{clientes.persona.apellidos}
-			</h:column>
-					<h:column>
-						<f:facet name="header">FECHA DE VENCIMIENTO</f:facet>
-						<h:commandButton
-							action="#{clientesBean.llamarVerMovimientos(clientes.numeroCuenta)}"
-							class="btn btn-info " value="CONSULTAR">
-
-						</h:commandButton>
-					</h:column>
-				</h:dataTable>
-
-				
+				<ui:insert name="contenido">
+					<h3 class="box-title">Blank Page</h3>
+						CUencaaa
+						</ui:insert>
 			</div>
 		</div>
 		<!-- /.container-fluid -->

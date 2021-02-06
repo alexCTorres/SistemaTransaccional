@@ -1,7 +1,10 @@
 package ec.ups.edu.appdis.g2.sistemaTransaccional.vista;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -9,9 +12,16 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Cuenta;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Persona;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Poliza;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Registro;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Usuario;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.negocio.GestionCorreoElectronico;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.negocio.GestionCuentaON;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.negocio.GestionPersonaON;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.negocio.GestionPolizaON;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.negocio.GestionRegistroON;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.negocio.GestionUsuarioON;
 
@@ -22,19 +32,34 @@ public class LoginBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Usuario newUsuario;
+	private List<Cuenta> listaCuentas;
+	private Persona newPersona;
+	private List<Poliza> listaPolizas;
 
 	@Inject
 	private GestionUsuarioON usuarioON;
 
 	@Inject
 	private GestionRegistroON registroON;
-	
+
 	@Inject
 	private GestionCorreoElectronico envioCorreoON;
+
+	@Inject
+	private GestionPersonaON personaON;
+
+	@Inject
+	private GestionCuentaON cuantaON;
+	
+	@Inject
+	private GestionPolizaON polizaON;
+	
 
 	@PostConstruct
 	public void init() {
 		newUsuario = new Usuario();
+	//	listaCuentas = new ArrayList<Cuenta>();
+		listaPolizas = new ArrayList<Poliza>();
 	}
 
 	public Usuario getNewUsuario() {
@@ -45,56 +70,74 @@ public class LoginBean implements Serializable {
 		this.newUsuario = newUsuario;
 	}
 	
+	
+	public List<Cuenta> getListaCuentas() {
+		return listaCuentas;
+	}
+
+	public void setListaCuentas(List<Cuenta> listaCuentas) {
+		this.listaCuentas = listaCuentas;
+	}
+
+	public Persona getNewPersona() {
+		return newPersona;
+	}
+
+	public void setNewPersona(Persona newPersona) {
+		this.newPersona = newPersona;
+	}
 
 	public String doIniciarSesion() {
 		Registro reg = new Registro();
 		Usuario u = new Usuario();
-		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"El Usuario "+ " <"+newUsuario.getNombreUsuario() +">" +" esta Bloqueado a fallado 3 intentos.",
-				"Usuario o contrasena incorrecto"	);
-		FacesMessage msgI = new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuario o contrasena incorrecto",
-				"Usuario Inactivo"	);
+		FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,
+				"El Usuario " + " <" + newUsuario.getNombreUsuario() + ">" + " esta Bloqueado a fallado 3 intentos.",
+				"Usuario o contrasena incorrecto");
+		FacesMessage msgI = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario o contrasena incorrecto",
+				"Usuario Inactivo");
 		try {
 			u = usuarioON.buscarUsuario(newUsuario.getNombreUsuario());
-				if(u.getContrasenia().equals(newUsuario.getContrasenia())&&u.getIntentosLogin()>0) {
-						reg.setFechaIngreso(new Date());
-						reg.setDescripcion("Ingreso Válido");
-						reg.setUsuario(u);
-						u.setIntentosLogin(3);
-						usuarioON.actualizarUsuario(u);
-						registroON.registrarRegistro(reg);
-						if(u.getRol().equals("ADMINISTRATIVO")) {
-							envioCorreoON.envioMailIngresoValido(u);
-							return "vistaAdministrador?faces-redirect=true";
-						}else if(u.getRol().equals("CAJERO")) {
-							envioCorreoON.envioMailIngresoValido(u);
-							return "vistaCajero?faces-redirect=true";
-						}else if(u.getRol().equals("ASISTENTE DE CAPTACIONES")) {
-							envioCorreoON.envioMailIngresoValido(u);
-							return "vistaAsistenteCaptaciones?faces-redirect=true";
-						}else {
-							envioCorreoON.envioMailIngresoValido(u);
-							return "vistaUsuariosSistema?faces-redirect=true";
-						}			
-				}else{
-					reg.setFechaIngreso(new Date());
-					reg.setDescripcion("Ingreso Inválido");
-					reg.setUsuario(u);
-					if(u.getIntentosLogin()==0) {
-						u.setEstado("INACTIVO");
-						usuarioON.actualizarUsuario(u);
-						FacesContext.getCurrentInstance().addMessage(null, msg);
-						return null;
-					}else {
-					u.setIntentosLogin(u.getIntentosLogin()-1);
+			if (u.getContrasenia().equals(newUsuario.getContrasenia()) && u.getIntentosLogin() > 0) {
+				reg.setFechaIngreso(new Date());
+				reg.setDescripcion("Ingreso Válido");
+				reg.setUsuario(u);
+				u.setIntentosLogin(3);
+				usuarioON.actualizarUsuario(u);
+				registroON.registrarRegistro(reg);
+				if (u.getRol().equals("ADMINISTRATIVO")) {
+				//	envioCorreoON.envioMailIngresoValido(u);
+					return "vistaAdministrador?faces-redirect=true";
+				} else if (u.getRol().equals("CAJERO")) {
+					//envioCorreoON.envioMailIngresoValido(u);
+					return "vistaCajero?faces-redirect=true";
+				} else if (u.getRol().equals("ASISTENTE DE CAPTACIONES")) {
+					//envioCorreoON.envioMailIngresoValido(u);
+					return "vistaAsistenteCaptaciones?faces-redirect=true";
+				} else {
+				//	envioCorreoON.envioMailIngresoValido(u);
+					reloadCuentas(u.getPersona().getId());
+					return "/html/templateCliente";
+				}
+			} else {
+				reg.setFechaIngreso(new Date());
+				reg.setDescripcion("Ingreso Inválido");
+				reg.setUsuario(u);
+				if (u.getIntentosLogin() == 0) {
+					u.setEstado("INACTIVO");
+					usuarioON.actualizarUsuario(u);
+					FacesContext.getCurrentInstance().addMessage(null, msg);
+					return null;
+				} else {
+					u.setIntentosLogin(u.getIntentosLogin() - 1);
 					usuarioON.actualizarUsuario(u);
 					registroON.registrarRegistro(reg);
 					FacesContext.getCurrentInstance().addMessage(null, msgI);
-					envioCorreoON.envioMailIngresoInValido(u);
+					//envioCorreoON.envioMailIngresoInValido(u);
 					return null;
-				 }
 				}
-		}catch (Exception e) {
-			System.out.println("Error al iniciar sesion " +e.getMessage() +"localize" + e.getLocalizedMessage());
+			}
+		} catch (Exception e) {
+			System.out.println("Error al iniciar sesion " + e.getMessage() + "localize" + e.getLocalizedMessage());
 			FacesContext.getCurrentInstance().addMessage(null, msgI);
 			e.printStackTrace();
 			return null;
@@ -102,10 +145,36 @@ public class LoginBean implements Serializable {
 	}
 
 	public String cerrarSesion() {
-			HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance()
-					.getExternalContext().getSession(false);
-			sesion.invalidate();
-			return "login?faces-redirect=true";
+		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		sesion.invalidate();
+		return "login?faces-redirect=true";
+	}
+
+	public List<Cuenta> reloadCuentas(int id) {
+		Persona p = new Persona();
+		try {
+			p = personaON.buscarPersona(id);
+			System.out.println("*-*-*-*-*-*Paso el metodo buscar persona la per " +p.getNombres());
+			listaCuentas = cuantaON.listaCuentas(p.getId());
+			return listaCuentas;
+
+		} catch (Exception e) {
+			System.out.println("Error al listar" + e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 	
+	private List<Poliza> reloadPolizas(String numCuenta){
+		try {
+			listaPolizas = polizaON.listarPorNumCuenta(numCuenta);
+			return listaPolizas;
+		} catch (Exception e) {
+			System.out.println("Error al listar" + e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

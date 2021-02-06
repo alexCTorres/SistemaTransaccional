@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Cuenta;
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Persona;
 
 @Stateless
 public class CuentaDAO {
@@ -82,7 +83,7 @@ public class CuentaDAO {
 
 	// listar cuentas mediante id utilizando jpa
 	public List<Cuenta> listaCUentas(int idPersona) {
-		Query query = em.createQuery("select c from Cuenta c where c.persona.id = ?1");
+		Query query = em.createQuery("select c from Cuenta c where c.persona.id = ?1", Cuenta.class);
 		query.setParameter(1, idPersona);
 		List<Cuenta> lista = query.getResultList();
 		return lista;

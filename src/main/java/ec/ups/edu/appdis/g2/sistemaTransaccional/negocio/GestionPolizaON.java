@@ -1,6 +1,7 @@
 package ec.ups.edu.appdis.g2.sistemaTransaccional.negocio;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -68,5 +69,9 @@ public class GestionPolizaON {
 		double tasa= tasaInteres/36000;
 		double interes = capital*tasa*plazoPoliza;
 		return interes;
+	}
+	
+	public List<Poliza> listarPorNumCuenta(String numCuenta){
+		return daoPoliza.listaPolizas(numCuenta);
 	}
 }

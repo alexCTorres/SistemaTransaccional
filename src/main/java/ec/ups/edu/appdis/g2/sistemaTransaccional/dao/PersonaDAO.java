@@ -58,9 +58,9 @@ public class PersonaDAO {
 	public Persona buscarPorCedula(String cedula) {
 		String jpql = "Select p FROM Persona p where cedula = ?1";
 		Persona p = new Persona();
-		Query q = em.createQuery(jpql);
+		Query q = em.createQuery(jpql,Persona.class);
 		q.setParameter(1, cedula);
-		p = (Persona) q.getSingleResult();
+		//p = q.getSingleResult();
 		return p;
 	}
 }

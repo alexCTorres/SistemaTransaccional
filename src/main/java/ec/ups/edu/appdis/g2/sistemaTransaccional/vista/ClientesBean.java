@@ -2,8 +2,6 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.vista;
 
 import java.io.Serializable;
 import java.util.List;
-
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -25,6 +23,7 @@ public class ClientesBean implements Serializable {
 	private Usuario newUsuario;
 	
 	private Persona newPersona;
+	
 
 	@Inject
 	private GestionCuentaON cuantaON;
@@ -33,6 +32,7 @@ public class ClientesBean implements Serializable {
 	private GestionPersonaON personaON;
 
 	private LoginBean loginBean;
+	
 
 	public List<Cuenta> getListaCuentas() {
 		return listaCuentas;
@@ -72,20 +72,23 @@ public class ClientesBean implements Serializable {
 		newPersona = new Persona(); 
 	}
 
-	public String reloadCuentas() {
+	public void reloadCuentas() {
 		Persona p = new Persona();
 		try {
 			p = personaON.buscarPorCed(newPersona.getCedula());
 			System.out.println("persona encontrarda " +p.getNombres());
 			listaCuentas = cuantaON.listaCuentas(p.getId());
-			return "";
 
 		} catch (Exception e) {
 			System.out.println("Error al listar" + e.getMessage());
 			e.printStackTrace();
-			return null;
-
+	
 		}
 
+	}
+	
+	public String llamarVerMovimientos(String cuenta) {
+		System.out.println("cedula " +cuenta);
+		return null;
 	}
 }

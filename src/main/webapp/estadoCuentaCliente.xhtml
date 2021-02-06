@@ -6,12 +6,12 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 
- <ui:composition template="html/templateCliente.xhtml">
+<ui:composition template="html/templateCliente.xhtml">
 
 	<ui:define name="title">
 		<h2>Bienvenido/a</h2>
 	</ui:define>
-<!-- 	<ui:define name="contenido">
+	<ui:define name="contenido">
 		<h2>*CONSULTE SUS CUENTAS</h2>
 		<br />
 		<h:form class="homepage_invitee_form" id="frma">
@@ -28,8 +28,7 @@
 					<div class="col-sm-12">
 						<br />
 						<h:commandButton action="#{clientesBean.reloadCuentas()}"
-							class="btn btn-success" value="Buscar" >
-							</h:commandButton>
+							class="btn btn-success" value="Buscar" />
 					</div>
 				</div>
 				<br />
@@ -61,55 +60,14 @@
 			</h:column>
 			<h:column>
 				<f:facet name="header">CONSULTAR MOVIMIENTOS</f:facet>
-				<h:commandButton action="#{clientesBean.llamarVerMovimientos(clientes.numeroCuenta)}"
+				<h:commandButton
 					class="btn btn-info "
-					value="CONSULTAR" >
-					
-				 </h:commandButton>
+					value="CONSULTAR" 
+				  />
 			</h:column>
 		</h:dataTable>
 
-	<h2>*VER MOVIMIENTOS DE LA CUENTA</h2>
-	
-	
-	<h:panelGrid columns="8">
-				<div class="form-group">
-					<label for="txtNombres" class="col-md-12">•Tipo Movimiento</label>
-					<div class="col-md-12">
-					<h:selectOneMenu value="#{movimientosBean.newMovimiento.tipo}" class="form-control form-control-line">
-						<f:selectItem itemValue="DEPÓSITO" itemLabel="DEPÓSITO" />
-						<f:selectItem itemValue="RETIRO" itemLabel="RETIRO" />
-					</h:selectOneMenu>
-				</div>
-				</div>
-				<div class="form-group">
-					<label for="txtApellidos" class="col-md-12">•Fecha Desde</label>
-					<div class="col-md-12">
-						<h:inputText id="txtApellidos" a:placeholder="dd/mm/yyyy"
-							value="#{cuentasBean.newPersona.apellidos}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="txtCedula" class="col-md-12">•Fecha Hasta</label>
-					<div class="col-md-12">
-						<h:inputText id="txtCedula" a:placeholder="dd/mm/yyyy"
-							value="#{cuentasBean.newPersona.cedula}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
+	</ui:define>
 
-				<div class="form-group">
-					<label for="txtNum" class="col-md-12">•Numero Cuenta</label>
-					<div class="col-md-12">
-						<h:inputText id="txtNum" a:placeholder="dd/mm/yyyy"
-							value="#{cuentasBean.newPersona.cedula}"
-							class="form-control form-control-line" />
-					</div>
-				</div>
-	</h:panelGrid>
-	
-	</ui:define>-->
-
-</ui:composition> 
+</ui:composition>
 </html>
