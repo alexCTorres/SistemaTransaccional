@@ -82,4 +82,12 @@ public class Movimientos implements Serializable {
 		this.cuenta = cuenta;
 	}
 
+	@Override
+	public String toString() {
+		return "Movimientos [id=" + id + ", tipo=" + tipo + ", monto=" + monto + ", cuentaSale=" + cuentaSale
+				+ ", fecha=" + fecha + ", cuenta=" + cuenta + "]";
+	}
+	
+	
+
 }

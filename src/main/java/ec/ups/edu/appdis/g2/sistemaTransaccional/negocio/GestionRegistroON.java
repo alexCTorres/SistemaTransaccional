@@ -1,6 +1,7 @@
 package ec.ups.edu.appdis.g2.sistemaTransaccional.negocio;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -77,6 +78,10 @@ public class GestionRegistroON  {
 
 	public boolean cambioContrasena(String correo) {
 		return true;
+	}
+	
+	public List<Registro> listarRegistros(String user){
+		return daoRegistro.listaRegistros(user);
 	}
 
 }

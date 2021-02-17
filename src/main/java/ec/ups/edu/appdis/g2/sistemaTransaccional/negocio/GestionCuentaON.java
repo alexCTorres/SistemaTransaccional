@@ -14,6 +14,12 @@ public class GestionCuentaON {
 	@Inject
 	private CuentaDAO daoCuenta;
 
+	/**
+	 * 
+	 * @param cuenta
+	 * @return 
+	 * @throws Exception
+	 */
 	public boolean registrarCuenta(Cuenta cuenta) throws Exception {
 		try {
 			daoCuenta.insertJPA(cuenta);
@@ -54,5 +60,9 @@ public class GestionCuentaON {
 	
 	public List<Cuenta> listarCuentasALL(){
 		return daoCuenta.listaCuentas();
+	}
+	
+	public List<Cuenta> listarCuentasprUsuario(String nomUsuario){
+		return daoCuenta.listaCuentasUsuario(nomUsuario);
 	}
 }

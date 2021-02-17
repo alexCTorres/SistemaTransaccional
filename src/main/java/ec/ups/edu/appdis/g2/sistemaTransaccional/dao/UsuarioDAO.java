@@ -37,6 +37,12 @@ public class UsuarioDAO {
 		em.merge(usuario);
 		return true;
 	}
+	
+	// metodo de update con JPA utilizando el Entity manager
+		public boolean updateJPAUser(String nomUsuario) throws SQLException {
+			em.merge(nomUsuario);
+			return true;
+		}
 
 	// metodo de read con JPA utilizando el Entity manager
 	public Usuario readJPA(String nomUsuario) throws Exception {
@@ -89,4 +95,10 @@ public class UsuarioDAO {
 		Query q = em.createQuery(jpql,Usuario.class);
 		return (List<Usuario>) q.getResultList();
 	}
+	//listar todos los usuarios creados
+		public List<Usuario> listaUsuariosBloq(){
+			String jpql = "Select u FROM Usuario u where u.estado = 'INACTIVO'";
+			Query q = em.createQuery(jpql,Usuario.class);
+			return (List<Usuario>) q.getResultList();
+		}
 }

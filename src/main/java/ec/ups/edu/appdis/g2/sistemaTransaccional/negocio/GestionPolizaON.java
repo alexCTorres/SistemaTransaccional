@@ -74,4 +74,12 @@ public class GestionPolizaON {
 	public List<Poliza> listarPorNumCuenta(String numCuenta){
 		return daoPoliza.listaPolizas(numCuenta);
 	}
+	
+	public List<Poliza> listarPorPersona(int id){
+		return daoPoliza.listaPolizasPorPersona(id);
+	}
+	
+	public List<Poliza> listarPplozasSolicitadas(){
+		return daoPoliza.listaPolizasSolicitadas();
+	}
 }

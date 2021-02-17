@@ -2,10 +2,14 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Cuenta;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Registro;
 
 @Stateless
@@ -42,4 +46,11 @@ public class RegistroDAO {
 		return true;
 	}
 
+	// listar cuentas mediante id utilizando jpa
+		public List<Registro> listaRegistros(String usuario) {
+			Query query = em.createQuery("select r from Registro r where r.usuario.nombreUsuario = ?1 order by 3 desc", Registro.class);
+			query.setParameter(1, usuario);
+			List<Registro> lista = query.getResultList();
+			return lista;
+		}
 }

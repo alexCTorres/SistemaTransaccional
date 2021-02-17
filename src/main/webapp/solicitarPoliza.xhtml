@@ -3,11 +3,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
-<ui:composition template="/html/templatePolizas.xhtml">
+<ui:composition template="/html/templateSolicitarPoliza.xhtml">
 	<ui:define name="title">
-        Simular una Póliza
+        Solicitar una Póliza
     </ui:define>
 	<ui:define name="contenido">
 		<h3>•Valores de las Tasas de Interés Actuales</h3>
@@ -40,12 +41,20 @@
 		<h3>•Datos de la Póliza</h3>
 		<br />
 		<h:form class="homepage_invitee_form" id="frm">
-			<h:panelGrid columns="10">
+			<h:panelGrid columns="9">
+			<div class="form-group">
+					<label for="txtNumCue" class="col-md-12">•Numero de Cuenta</label>
+					<div class="col-md-12">
+						<h:inputText id="txtNumCue" disabled="true"
+							value="#{loginBean.numCuenta}"
+							class="form-control form-control-line" />
+					</div>
+				</div>
 				<div class="form-group">
 					<label for="txtNombres" class="col-md-12">•Capital $</label>
 					<div class="col-md-12">
 						<h:inputText id="txtNombres" a:placeholder="$00.00"
-							value="#{polizasBean.newPoliza.capital}"
+							value="#{loginBean.newPoliza.capital}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -54,31 +63,34 @@
 					<div class="col-md-12">
 						<h:inputText id="txtApellidos"
 							a:placeholder="Mayor o igual a 30 dias..."
-							value="#{polizasBean.newPoliza.plazo}"
+							value="#{loginBean.newPoliza.plazo}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="txtTipCuenta" class="col-md-12">•Pago</label>
 					<div class="col-md-12">
-						<h:selectOneMenu value="#{polizasBean.newPoliza.frecuenciaPago}"
+						<h:selectOneMenu value="#{loginBean.newPoliza.frecuenciaPago}"
 							class="form-control form-control-line">
 							<f:selectItem itemValue="FINALIZACIÓN" itemLabel="FINALIZACIÓN" />
 						</h:selectOneMenu>
 					</div>
 				</div>
+				<br /><br />
+
 				<div class="form-group">
 					<div class="col-md-12">
-						<br />
-						<h:commandButton action="#{polizasBean.calcularPoliza()}"
-							class="btn btn-success" value="SIMULAR" />
+						<br /><br />
+						<h:commandButton action="#{loginBean.solicitar()}"
+							class="btn btn-success" value="SOLICITAR" />
 					</div>
 				</div>
+
 			</h:panelGrid>
 		</h:form>
-		<br />
+				<br />
 		<h3>********************************************************************************************************************</h3>
-		<h3>•VALORES DE SIMULACIÓN</h3>
+		<h3>•VALORES DE LA POLIZA SOLICITADA</h3>
 		<br />
 		<h:form class="homepage_invitee_form" id="frmm">
 			<h:panelGrid columns="6">
@@ -86,7 +98,7 @@
 					<label for="txtCapital" class="col-md-12">•Valor de la Póliza $</label>
 					<div class="col-md-12">
 						<h:inputText id="txtCapital" disabled="true"
-							value="#{polizasBean.capitalSIm}"
+							value="#{loginBean.resultPoliza.capital}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -94,7 +106,7 @@
 					<label for="txtPlazo" class="col-md-12">•Plazo</label>
 					<div class="col-md-12">
 						<h:inputText id="txtPlazo" disabled="true"
-							value="#{polizasBean.plazoSim}"
+							value="#{loginBean.resultPoliza.plazo}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -102,7 +114,7 @@
 					<label for="txtPago" class="col-md-12">•Pago  de Póliza</label>
 					<div class="col-md-12">
 						<h:inputText id="txtPago" disabled="true"
-							value="#{polizasBean.pagoSim}"
+							value="#{loginBean.resultPoliza.frecuenciaPago}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -111,7 +123,7 @@
 					<label for="txtFVence" class="col-md-12">•Fecha de Vencimiento</label>
 					<div class="col-md-12">
 						<h:inputText id="txtFVence" disabled="true"
-							value="#{polizasBean.fechaSim}"
+							value="#{loginBean.resultPoliza.fechaVencimiento}"
 							class="form-control form-control-line" />
 					</div>
 				</div>
@@ -119,7 +131,7 @@
 					<label for="txtInt" class="col-md-12">•Interés total a cobrar $</label>
 					<div class="col-md-12">
 						<h:inputText id="txtInt" disabled="true"
-							value="#{polizasBean.interesSim}"
+							value="#{loginBean.resultPoliza.interes}"
 							class="form-control form-control-line" />
 					</div>
 				</div>

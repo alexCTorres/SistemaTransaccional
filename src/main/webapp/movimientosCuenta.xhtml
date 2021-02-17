@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="html/templateMovimientosCuenta.xhtml">
+	<ui:define name="title">
+      Movimientos de una Cuenta
+    </ui:define>
+	<ui:define name="contenido">
+	<h:form class="homepage_invitee_form" id="frma">
+			<h:panelGrid columns="8">
+			<div class="form-group">
+					<label for="txtfdesde" class="col-md-12">•Fecha Desde</label>
+					<div class="col-md-12">
+						<h:inputText id="txtfdesde" a:placeholder="dd/MM/yyyy"
+							value=""
+							class="form-control form-control-line" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="txtfhasta" class="col-md-12">•Fecha Hasta</label>
+					<div class="col-md-12">
+						<h:inputText id="txtfhasta" a:placeholder="dd/MM/yyyy"
+							value=""
+							class="form-control form-control-line" />
+					</div>
+				</div>
+				<div class="form-group">
+				<label for="txtTipomov" class="col-md-12">•Tipo de Movimiento</label>
+				<div class="col-md-12">
+					<h:selectOneMenu value="#{cuentasBean.newTipoCuenta.tipoCuenta}" class="form-control form-control-line">
+						<f:selectItem itemValue="DEPÓSITO" itemLabel="DEPÓSITO" />
+						<f:selectItem itemValue="RETIRO" itemLabel="RETIRO" />
+					</h:selectOneMenu>
+				</div>
+			</div>
+				<div class="form-group">
+				<div class="col-sm-12">
+					<br />
+					<h:commandButton action="#{clientesBean.listarMovimientosCuenta()}"
+						class="btn btn-success" value="Mostrar" />
+				</div>
+			</div>
+			</h:panelGrid>
+			</h:form>
+			<br />
+			<br />
+	<h:form>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="table-responsive">
+						<h:dataTable value="#{loginBean.listaMovimientos}"
+							var="movimientos" class="table">
+							<h:column>
+								<f:facet name="header">CUENTA PROPIETARIO</f:facet>
+			#{movimientos.cuenta.numeroCuenta}
+			</h:column>
+							<h:column>
+								<f:facet name="header">FECHA</f:facet>
+			#{movimientos.fecha}
+			</h:column>
+			<h:column>
+								<f:facet name="header">MONTO</f:facet>
+			#{movimientos.monto}
+			</h:column>
+			<h:column>
+								<f:facet name="header">TIPO DE CUENTA</f:facet>
+			#{movimientos.cuenta.tipoCuenta.tipoCuenta}
+			</h:column>
+			<h:column>
+								<f:facet name="header">TIPO DE MOVIMIENTO</f:facet>
+			#{movimientos.tipo}
+			</h:column>
+			
+			<h:column>
+								<f:facet name="header">CUENTA DESTINO</f:facet>
+			#{movimientos.cuentaSale}
+			</h:column>
+						</h:dataTable>
+					</div>
+				</div>
+			</div>
+		</div>
+		</h:form>
+		<br />
+	</ui:define>
+</ui:composition>
+
+</html>

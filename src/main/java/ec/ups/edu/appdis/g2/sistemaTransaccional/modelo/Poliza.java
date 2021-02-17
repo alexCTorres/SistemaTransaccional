@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,7 +29,7 @@ public class Poliza implements Serializable {
 	@Column(name = "pol_frecuencia_pago")
 	private String frecuenciaPago;
 	@Column(name = "pol_fecha_vencimiento")
-	private Date fechaVencimiento;
+	private String fechaVencimiento;
 	@Column(name = "pol_dia_pago")
 	private int diaPago;
 	@Column(name = "pol_interes")
@@ -75,11 +76,11 @@ public class Poliza implements Serializable {
 		this.frecuenciaPago = frecuenciaPago;
 	}
 
-	public Date getFechaVencimiento() {
+	public String getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public void setFechaVencimiento(Date fechaVencimiento) {
+	public void setFechaVencimiento(String fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 

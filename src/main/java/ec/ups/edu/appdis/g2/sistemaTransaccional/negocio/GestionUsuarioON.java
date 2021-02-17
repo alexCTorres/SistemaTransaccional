@@ -24,9 +24,20 @@ public class GestionUsuarioON  {
 		return true;
 	}
 
-	public boolean actualizarUsuario(Usuario usuario) throws Exception {
+	public boolean actualizarUsuario(Usuario u) throws Exception {
 		try {
-			daoUsuario.updateJPA(usuario);
+			daoUsuario.updateJPA(u);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new Exception("Error al registrar");
+		}
+		return true;
+	}
+	
+	public boolean actualizarUsuarioNomUser(String nomUser) throws Exception {
+		try {
+			daoUsuario.updateJPAUser(nomUser);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,4 +108,10 @@ public class GestionUsuarioON  {
 	public List<Usuario> getListUsuarios(){
 		return daoUsuario.listaUsuarios();
 	}
+	
+
+	public List<Usuario> getListUsuariosBloq(){
+		return daoUsuario.listaUsuariosBloq();
+	}
+	
 }

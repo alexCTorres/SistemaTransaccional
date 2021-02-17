@@ -25,6 +25,10 @@ public class UsuarioBean implements Serializable {
 	private Persona newPersona;
 
 	private List<Usuario> listaUsuarios;
+	
+	private List<Usuario> listaUsuariosBloqueados;
+	
+	private String usuario;
 
 	@Inject
 	private GestionUsuarioON usuarioON;
@@ -37,6 +41,7 @@ public class UsuarioBean implements Serializable {
 		newPersona = new Persona();
 		newUsuario = new Usuario();
 		reloadUsuarios();
+		reloadUsuariosBloq();
 	}
 
 	public Usuario getNewUsuario() {
@@ -61,6 +66,14 @@ public class UsuarioBean implements Serializable {
 
 	public void setListaUsuarios(List<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
+	}
+
+	public List<Usuario> getListaUsuariosBloqueados() {
+		return listaUsuariosBloqueados;
+	}
+
+	public void setListaUsuariosBloqueados(List<Usuario> listaUsuariosBloqueados) {
+		this.listaUsuariosBloqueados = listaUsuariosBloqueados;
 	}
 
 	public String doGuardarUsuario() {
@@ -157,5 +170,23 @@ public class UsuarioBean implements Serializable {
 	public void reloadUsuarios() {
 		listaUsuarios = usuarioON.getListUsuarios();
 	}
+	
+	public void reloadUsuariosBloq() {
+		listaUsuariosBloqueados = usuarioON.getListUsuariosBloq();
+	}
 
+	public String desbloquearUsuario(String nombreUsuario) {
+		Usuario u = new Usuario();
+		try {
+			u = usuarioON.buscarUsuario(nombreUsuario);
+			u.setEstado("ACTIVO");
+			u.setIntentosLogin(3);
+			System.out.println("suario " +u.getNombreUsuario());
+			usuarioON.actualizarUsuario(u);
+			return "listarUsuarios?faces-redirect=true";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
 }

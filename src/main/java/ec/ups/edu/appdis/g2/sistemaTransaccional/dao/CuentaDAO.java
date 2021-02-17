@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Cuenta;
-import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Persona;
 
 @Stateless
 public class CuentaDAO {
@@ -28,32 +27,56 @@ public class CuentaDAO {
 	@Inject
 	private Connection con;
 
-	// metodo de insertar con JPA utilizando el Entity manager
+	/** 
+	 *  metodo de insertar con JPA utilizando el Entity manager
+	 * @param cuenta
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean insertJPA(Cuenta cuenta) throws SQLException {
 		em.persist(cuenta);
 		return true;
 	}
 
-	// metodo de update con JPA utilizando el Entity manager
+	/**
+	 *  metodo de update con JPA utilizando el Entity manager
+	 * @param cuenta
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updateJPA(Cuenta cuenta) throws SQLException {
 		em.merge(cuenta);
 		return true;
 	}
 
-	// metodo de read con JPA utilizando el Entity manager
+	/** 
+	 *  metodo de read con JPA utilizando el Entity manager
+	 * @param numCuenta
+	 * @return
+	 * @throws SQLException
+	 */
 	public Cuenta readJPA(String numCuenta) throws SQLException {
 		Cuenta c = em.find(Cuenta.class, numCuenta);
 		return c;
 	}
 
-	// metodo de delete con JPA utilizando el Entity manager
+	/**
+	 * metodo de delete con JPA utilizando el Entity manager
+	 * @param numCuenta
+	 * @return boolean
+	 * @throws SQLException
+	 */
 	public boolean deleteJPA(String numCuenta) throws SQLException {
 		Cuenta c = em.find(Cuenta.class, numCuenta);
 		em.remove(c);
 		return true;
 	}
 
-	// listar cuentas por id mediante jdbc
+	/**
+	 *  listar cuentas por id mediante jdbc
+	 * @param idPersona
+	 * @return
+	 */
 	public List<Cuenta> listaCuentasPersona(int idPersona) {
 		String jpql = "select c from Cuenta c where c.per_id = ?1 ";
 		List<Cuenta> listacuenta = new ArrayList<Cuenta>();
@@ -81,7 +104,11 @@ public class CuentaDAO {
 		}
 	}
 
-	// listar cuentas mediante id utilizando jpa
+	/**
+	 * listar cuentas mediante id utilizando jpa
+	 * @param idPersona
+	 * @return
+	 */
 	public List<Cuenta> listaCUentas(int idPersona) {
 		Query query = em.createQuery("select c from Cuenta c where c.persona.id = ?1", Cuenta.class);
 		query.setParameter(1, idPersona);
@@ -89,11 +116,20 @@ public class CuentaDAO {
 		return lista;
 	}
 
-	// metodo para listar las cuentas creadas
+	/**
+	 * metodo para listar las cuentas creadas
+	 * @return
+	 */
 	public List<Cuenta> listaCuentas() {
 		String jpql = "Select c FROM Cuenta c";
 		Query q = em.createQuery(jpql, Cuenta.class);
 		return (List<Cuenta>) q.getResultList();
 	}
 
+	
+	public List<Cuenta> listaCuentasUsuario(String nomUsuario) {
+		Query query = em.createQuery( "select c FROM Cuenta c, Persona p, Usuario u Where u.persona = p.id and c.persona = p.id and u.nombreUsuario = ?1", Cuenta.class);
+		query.setParameter(1, nomUsuario);
+		return (List<Cuenta>) query.getResultList();
+	}
 }

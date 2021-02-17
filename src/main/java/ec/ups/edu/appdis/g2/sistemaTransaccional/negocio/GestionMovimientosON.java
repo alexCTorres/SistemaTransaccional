@@ -69,4 +69,8 @@ public class GestionMovimientosON {
 	public List<Movimientos> getMovimientis(){
 		return daoMovimientos.listaMovimientos();
 	}
+	
+	public List<Movimientos> getMovimientosCuenta(String numCuenta){
+		return daoMovimientos.listaMovimientosporCuenta(numCuenta);
+	}
 }

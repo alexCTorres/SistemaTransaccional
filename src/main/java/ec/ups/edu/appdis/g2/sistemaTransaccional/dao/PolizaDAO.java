@@ -54,4 +54,26 @@ public class PolizaDAO {
 		List<Poliza> lista = query.getResultList();
 		return lista;
 	}
+	
+	/*public List<Poliza> listaPolizasPorPersona(int id){
+		Query query = em.createQuery("select po.id, po.capital, po.diaPago, po.estado, po.fechaVencimiento,\n"
+				+ "po.fotoCedula, po.fotoServBasico, po.frecuenciaPago, po.interes, po.plazo, po.cuenta\n"
+				+ "from Poliza po, Persona p where po.estado = 'ACTIVO' and p.id = ?1", Poliza.class);
+		query.setParameter(1, id);
+		List<Poliza> lista = query.getResultList();
+		return lista;
+	}*/
+	public List<Poliza> listaPolizasPorPersona(int id){
+		Query query = em.createQuery("select po from Poliza po, Persona p, Cuenta c where po.cuenta = c.numeroCuenta\n"
+		+"and c.persona = p.id and po.estado = 'ACTIVO' and p.id = ?1", Poliza.class);
+		query.setParameter(1, id);
+		List<Poliza> lista = query.getResultList();
+		return lista;
+	}
+	
+	public List<Poliza> listaPolizasSolicitadas(){
+		Query query = em.createQuery("select po from Poliza po where po.estado = 'SOLICITADO'", Poliza.class);
+		List<Poliza> lista = query.getResultList();
+		return lista;
+	}
 }

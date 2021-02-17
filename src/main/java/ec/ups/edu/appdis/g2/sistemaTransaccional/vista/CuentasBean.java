@@ -232,7 +232,7 @@ public class CuentasBean implements Serializable {
 		int n = (int) (Math.random() * (100 - 1)) + 1;
 		int res = n * 100;
 
-		return nombre + res;
+		return nombre+res;
 	}
 	
 	public void doListarCuentas() {

@@ -4,6 +4,7 @@ package ec.ups.edu.appdis.g2.sistemaTransaccional.negocio;
 import java.util.Date;
 import java.util.Properties;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -16,8 +17,8 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Usuario;
 @Stateless
 public class GestionCorreoElectronico {
 
-	String origen = "alexcristopher96@gmail.com";
-	String password = "ced0105315113";
+	String origen = "bancoups@gmail.com";
+	String password = "bancoUPS123";
 
 	public void enviarCOrreo(String correo, String asunto, String mensaje) {
 		try {
@@ -37,8 +38,9 @@ public class GestionCorreoElectronico {
 			trans.sendMessage(message, message.getAllRecipients());
 			trans.close();
 		} catch (Exception e) {
-			System.out.println("Error de mesaje evio mail " + e.getMessage());
 			e.getStackTrace();
+			System.out.println("Error de mesaje evio mail " + e.getMessage());
+	
 		}
 	}
 
@@ -58,7 +60,7 @@ public class GestionCorreoElectronico {
 	}
 	
 	public void envioMailRegistroCuenta(Usuario u, Cuenta c) {
-		String mensaje= "Estimado/a: " +u.getPersona().getNombres() + " "+ u.getPersona().getApellidos()
+		String mensaje= "Estimado/a: " +u.getPersona().getNombres() + "  "+ u.getPersona().getApellidos()
 				+"\nSe realizó la creación de la cuenta en el Sistema Transaccional UPS"
 				+"\nUsuario: " +u.getNombreUsuario() + " Contraseña: " +u.getContrasenia() 
 				+"\nTipo de Cuenta: " +c.getTipoCuenta().getTipoCuenta()
@@ -73,7 +75,17 @@ public class GestionCorreoElectronico {
 				+"\nTipo de Cuenta: " +c.getTipoCuenta().getTipoCuenta()
 				+"\nSaldo: " +c.getSaldo()+ "  Número de Cuenta: " +c.getNumeroCuenta()
 				+ "\nFecha: "+ new Date();
-		enviarCOrreo(p.getCorreo(), "Creación de Cuenta UPS", mensaje);
+		enviarCOrreo(p.getCorreo(), "Agregación de Cuenta UPS", mensaje);
+	}
+	
+	public void envioMailCambioContrasena(Usuario u) {
+		System.out.println("entro al metodo de envio de mail;" +u.getPersona().getNombres() + u.getPersona().getApellidos());
+		String mensaje= "Estimado/a: " +u.getPersona().getNombres() + u.getPersona().getApellidos()
+				+"\nSe realizó el cambio de contraseña su usuario en el Sistema Transaccional UPS"
+				+"\nUsuario: " +u.getNombreUsuario() 
+				+"\nNueva contraseña: " +u.getContrasenia()
+				+ "\nFecha: "+ new Date();
+		enviarCOrreo(u.getPersona().getCorreo(), "Cambio de contraseña de usuario UPS", mensaje);
 	}
 	
 }

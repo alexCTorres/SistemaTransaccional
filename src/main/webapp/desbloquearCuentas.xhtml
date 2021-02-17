@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="html/templateCrearUsuarios.xhtml">
+	<ui:define name="title">
+        Desbloquear Usuarios Bloqueados
+    </ui:define>
+	<ui:define name="contenido">
+	<h:form>
+	<h3>•Usuarios Bloqueados</h3>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="table-responsive">
+						<h:dataTable value="#{usuarioBean.listaUsuariosBloqueados}" var="usuario"
+							class="table">
+							<h:column>
+								<f:facet name="header">USUARIO</f:facet>
+			#{usuario.nombreUsuario}
+			</h:column>
+							<h:column>
+								<f:facet name="header">ESTADO</f:facet>
+			#{usuario.estado}
+			</h:column>
+							<h:column>
+								<f:facet name="header">INTENTOS LOGUEO</f:facet>
+			   #{usuario.intentosLogin}
+			</h:column>
+							<h:column >
+								<f:facet name="header">ROL</f:facet>
+			#{usuario.rol}
+			</h:column>
+							<h:column>
+								<f:facet name="header">PERSONA</f:facet>
+			#{usuario.persona.nombres}  #{usuario.persona.apellidos}
+			</h:column>
+			<h:column>
+								<f:facet name="header">CORREO ELECTRÓNICO</f:facet>
+			#{usuario.persona.correo}
+			</h:column>
+			<h:column>
+						<f:facet name="header">DESBLOQUEAR</f:facet>
+						<h:commandButton action="#{usuarioBean.desbloquearUsuario(usuario.nombreUsuario)}"
+							class="btn btn-info " value="DESBLOQUEAR"/>
+					</h:column>
+						</h:dataTable>
+					</div>
+				</div>
+			</div>
+		</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

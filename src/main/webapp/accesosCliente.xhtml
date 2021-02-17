@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="html/templateHistorialAcceso.xhtml">
+	<ui:define name="title">
+       Historial de Accesos al Sistema Transaccional
+    </ui:define>
+	<ui:define name="contenido">
+	<h:form>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="white-box">
+					<div class="table-responsive">
+						<h:dataTable value="#{loginBean.listaRegistros}"
+							var="registro" class="table">
+							<h:column>
+								<f:facet name="header">DESCRIPCIÓN</f:facet>
+			#{registro.descripcion}
+			</h:column>
+							<h:column>
+								<f:facet name="header">FECHA DE INGRESO</f:facet>
+			#{registro.fechaIngreso}
+			</h:column>
+			<h:column>
+								<f:facet name="header">USUARIO</f:facet>
+			#{registro.usuario.nombreUsuario}
+			</h:column>
+						</h:dataTable>
+					</div>
+				</div>
+			</div>
+		</div>
+		</h:form>
+		<br />
+	</ui:define>
+</ui:composition>
+
+</html>

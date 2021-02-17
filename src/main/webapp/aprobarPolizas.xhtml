@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+
+<ui:composition template="html/templateAprobacionPolizas.xhtml">
+	<ui:define name="title">
+        APROBAR POLIZAS SOLICITADAS
+    </ui:define>
+	<ui:define name="contenido">
+		<h:form>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="white-box">
+						<div class="table-responsive">
+							<h:dataTable value="#{polizasBean.listaPolizaSolicitadas}"
+								var="poliza" class="table">
+								<h:column>
+									<f:facet name="header"># PÓLIZA</f:facet>
+			#{poliza.id}
+			</h:column>
+			<h:column>
+									<f:facet name="header"># CUENTA</f:facet>
+			#{poliza.cuenta.numeroCuenta}
+			</h:column>
+								<h:column>
+									<f:facet name="header">ESTADO</f:facet>
+			   #{poliza.estado}
+			</h:column>
+								<h:column>
+									<f:facet name="header">PLAZO</f:facet>
+			#{poliza.plazo}
+			</h:column>
+								<h:column>
+									<f:facet name="header">VALOR PÓLIZA</f:facet>
+			   #{poliza.capital}
+			</h:column>
+								<h:column>
+									<f:facet name="header">INTERÉS $</f:facet>
+			   #{poliza.interes}
+			</h:column>
+								<h:column>
+									<f:facet name="header">FECHA DE VENCIMIENTO</f:facet>
+			   #{poliza.fechaVencimiento}
+			</h:column>
+								<h:column>
+									<f:facet name="header">PROPIETARIO</f:facet>
+			   #{poliza.cuenta.persona.nombres} #{poliza.cuenta.persona.apellidos}
+			</h:column>
+			<h:column>
+				<f:facet name="header">APROBAR</f:facet>
+						<h:commandButton
+							action="#{polizasBean.aprobarPoliza(poliza.id, poliza.capital, poliza.cuenta.numeroCuenta)}"
+							class="btn btn-info " value="APROBAR">
+
+						</h:commandButton>
+					</h:column>
+					
+					<h:column>
+			<f:facet name="header">DENEGAR</f:facet>
+						<h:commandButton
+							action="#{polizasBean.negarPoliza(poliza.id)}"
+							class="btn btn-info " value="DENEGAR">
+
+						</h:commandButton>
+					</h:column>
+							</h:dataTable>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

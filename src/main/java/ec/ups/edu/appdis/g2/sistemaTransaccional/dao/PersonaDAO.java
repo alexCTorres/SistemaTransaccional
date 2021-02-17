@@ -28,33 +28,57 @@ public class PersonaDAO {
 	 * ps.executeUpdate(); ps.close(); return true; }
 	 */
 
-	// metodo de insertar con JPA utilizando el Entity manager
+	/**
+	 * metodo de insertar con JPA utilizando el Entity manager
+	 * @param persona
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean insertJPA(Persona persona) throws SQLException {
 		em.persist(persona);
 		return true;
 	}
 
-	// metodo de update con JPA utilizando el Entity manager
+	/**
+	 * metodo de update con JPA utilizando el Entity manager
+	 * @param persona
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updateJPA(Persona persona) throws SQLException {
 		em.merge(persona);
 		return true;
 	}
 
-	// metodo de read con JPA utilizando el Entity manager
+	/**
+	 * metodo de read con JPA utilizando el Entity manager
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public Persona readJPA(int id) throws SQLException {
 		Persona p = em.find(Persona.class, id);
 		return p;
 	}
 	
 
-	// metodo de delete con JPA utilizando el Entity manager
+	/**
+	 * metodo de delete con JPA utilizando el Entity manager
+	 * @param cedula
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean deleteJPA(String cedula) throws SQLException {
 		Persona p = em.find(Persona.class, cedula);
 		em.remove(p);
 		return true;
 	}
 	
-//metodo para buscar una persona mediante la cedula
+	/**
+	 * metodo para buscar una persona mediante la cedula
+	 * @param cedula
+	 * @return
+	 */
 	public Persona buscarPorCedula(String cedula) {
 		String jpql = "Select p FROM Persona p where cedula = ?1";
 		Persona p = new Persona();

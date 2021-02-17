@@ -82,4 +82,10 @@ public class Cuenta implements Serializable {
 		this.tipoCuenta = tipoCuenta;
 	}
 
+	@Override
+	public String toString() {
+		return "Cuenta [numeroCuenta=" + numeroCuenta + ", fechaApertura=" + fechaApertura + ", estado=" + estado
+				+ ", saldo=" + saldo + ", persona=" + persona + ", tipoCuenta=" + tipoCuenta + "]";
+	}
+
 }
