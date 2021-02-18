@@ -38,12 +38,12 @@ public class PolizasBean implements Serializable {
 
 	@Inject
 	private GestionPolizaON polizaON;
-	
+
 	@Inject
 	private GestionCuentaON cuentaON;
 
 	private List<Poliza> listaPoliza;
-	
+
 	private List<Poliza> listaPolizaSolicitadas;
 
 	private List<TasaInteres> listaTasa;
@@ -81,7 +81,7 @@ public class PolizasBean implements Serializable {
 	public void setListaTasa(List<TasaInteres> listaTasa) {
 		this.listaTasa = listaTasa;
 	}
-	
+
 	public Poliza getBuscaPoliza() {
 		return buscaPoliza;
 	}
@@ -89,7 +89,7 @@ public class PolizasBean implements Serializable {
 	public void setBuscaPoliza(Poliza buscaPoliza) {
 		this.buscaPoliza = buscaPoliza;
 	}
-	
+
 	public double getCapitalSIm() {
 		return capitalSIm;
 	}
@@ -130,7 +130,6 @@ public class PolizasBean implements Serializable {
 		this.interesSim = interesSim;
 	}
 
-
 	public List<TasaInteres> getListaTasaInteres() {
 		return listaTasaInteres;
 	}
@@ -138,8 +137,6 @@ public class PolizasBean implements Serializable {
 	public void setListaTasaInteres(List<TasaInteres> listaTasaInteres) {
 		this.listaTasaInteres = listaTasaInteres;
 	}
-	
-	
 
 	public String getImagenCedula() {
 		return imagenCedula;
@@ -148,51 +145,64 @@ public class PolizasBean implements Serializable {
 	public void setImagenCedula(String imagenCedula) {
 		this.imagenCedula = imagenCedula;
 	}
-	
-	
-	
+
 	public List<Poliza> getListaPolizaSolicitadas() {
 		return listaPolizaSolicitadas;
 	}
 
+	/**
+	 * polizas solicutadas
+	 * 
+	 * @param listaPolizaSolicitadas
+	 */
 	public void setListaPolizaSolicitadas(List<Poliza> listaPolizaSolicitadas) {
 		this.listaPolizaSolicitadas = listaPolizaSolicitadas;
 	}
 
+	/**
+	 * calcular el valor total de la poliza
+	 */
 	public void calcularPoliza() {
 		Calendar calendar = Calendar.getInstance();
-			Poliza pol = new Poliza();
-			pol.setId(1);
-			pol.setCapital(newPoliza.getCapital());
-			pol.setEstado("SIMULADO");
-			pol.setPlazo(newPoliza.getPlazo());
-			pol.setFrecuenciaPago(newPoliza.getFrecuenciaPago());
-			calendar.add(Calendar.DATE, newPoliza.getPlazo());
-			int mes = (calendar.get(Calendar.MONTH)+1);
-			pol.setFechaVencimiento("" +calendar.get(Calendar.DATE) +"/" +mes +"/" +calendar.get(Calendar.YEAR));
-			double capital = newPoliza.getCapital();
-			int plazo = newPoliza.getPlazo();
-			double tasa = 0;
-			listaTasa = tasaON.getTasaInteres();
-			for (TasaInteres tInt : listaTasa) {
-				if (plazo >= tInt.getDiaDesde() && plazo <= tInt.getDiaHasta()) {
-					tasa = tInt.getTasaInteres();
-					break;
-				}
+		Poliza pol = new Poliza();
+		pol.setId(1);
+		pol.setCapital(newPoliza.getCapital());
+		pol.setEstado("SIMULADO");
+		pol.setPlazo(newPoliza.getPlazo());
+		pol.setFrecuenciaPago(newPoliza.getFrecuenciaPago());
+		calendar.add(Calendar.DATE, newPoliza.getPlazo());
+		int mes = (calendar.get(Calendar.MONTH) + 1);
+		pol.setFechaVencimiento("" + calendar.get(Calendar.DATE) + "/" + mes + "/" + calendar.get(Calendar.YEAR));
+		double capital = newPoliza.getCapital();
+		int plazo = newPoliza.getPlazo();
+		double tasa = 0;
+		listaTasa = tasaON.getTasaInteres();
+		for (TasaInteres tInt : listaTasa) {
+			if (plazo >= tInt.getDiaDesde() && plazo <= tInt.getDiaHasta()) {
+				tasa = tInt.getTasaInteres();
+				break;
 			}
-			double interes = capital * (tasa / 36000) * plazo;
-			pol.setInteres(interes);
-			
-			capitalSIm = pol.getCapital();
-			plazoSim = pol.getPlazo();
-			pagoSim = pol.getFrecuenciaPago();
-			fechaSim = pol.getFechaVencimiento();
-			interesSim = pol.getInteres();	
+		}
+		double interes = capital * (tasa / 36000) * plazo;
+		pol.setInteres(interes);
+
+		capitalSIm = pol.getCapital();
+		plazoSim = pol.getPlazo();
+		pagoSim = pol.getFrecuenciaPago();
+		fechaSim = pol.getFechaVencimiento();
+		interesSim = pol.getInteres();
 	}
+
+	/**
+	 * listar las tasas de interes
+	 */
 	public void listarTasaInteres() {
 		listaTasaInteres = tasaON.getTasaInteres();
 	}
-	
+
+	/**
+	 * solictra una poliza
+	 */
 	public void solicitarPoliza() {
 		Calendar calendar = Calendar.getInstance();
 		try {
@@ -202,9 +212,9 @@ public class PolizasBean implements Serializable {
 			pol.setPlazo(newPoliza.getPlazo());
 			pol.setFrecuenciaPago(newPoliza.getFrecuenciaPago());
 			calendar.add(Calendar.DATE, newPoliza.getPlazo());
-			int mes = (calendar.get(Calendar.MONTH)+1);
+			int mes = (calendar.get(Calendar.MONTH) + 1);
 			int dia = calendar.get(Calendar.DATE);
-			pol.setFechaVencimiento("" +calendar.get(Calendar.DATE) +"/" +mes +"/" +calendar.get(Calendar.YEAR));
+			pol.setFechaVencimiento("" + calendar.get(Calendar.DATE) + "/" + mes + "/" + calendar.get(Calendar.YEAR));
 			double capital = newPoliza.getCapital();
 			int plazo = newPoliza.getPlazo();
 			double tasa = 0;
@@ -218,7 +228,7 @@ public class PolizasBean implements Serializable {
 			double interes = capital * (tasa / 36000) * plazo;
 			pol.setInteres(interes);
 			pol.setDiaPago(dia);
-			byte[] foto = {0,0,0,0,0,0,0,0};
+			byte[] foto = { 0, 0, 0, 0, 0, 0, 0, 0 };
 			pol.setFotoCedula(foto);
 			pol.setFotoServBasico(foto);
 			polizaON.registrarPoliza(pol);
@@ -226,36 +236,48 @@ public class PolizasBean implements Serializable {
 			plazoSim = pol.getPlazo();
 			pagoSim = pol.getFrecuenciaPago();
 			fechaSim = pol.getFechaVencimiento();
-			interesSim = pol.getInteres();	
-		}catch(Exception e) {
+			interesSim = pol.getInteres();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void polizasSolicitadas() {
 		listaPolizaSolicitadas = polizaON.listarPplozasSolicitadas();
 	}
-	
+
+	/**
+	 * aprobar poliza en estado solicitado
+	 * 
+	 * @param id
+	 * @param valor
+	 * @param numCuenta
+	 */
 	public void aprobarPoliza(int id, double valor, String numCuenta) {
 		Poliza pol = new Poliza();
 		Cuenta cue = new Cuenta();
 		try {
 			pol = polizaON.buscarPoliza(id);
 			cue = cuentaON.buscarCuenta(numCuenta);
-			if(pol.getCapital()>cue.getSaldo()) {
+			if (pol.getCapital() > cue.getSaldo()) {
 				System.out.println("No se puede realizar una poliza");
-			}else {
-			pol.setEstado("ACTIVO");
-			polizaON.actualizarPoliza(pol);
-			cue.setSaldo(cue.getSaldo()-pol.getCapital());
-			cuentaON.actualizarCuenta(cue);
-			polizasSolicitadas();
+			} else {
+				pol.setEstado("ACTIVO");
+				polizaON.actualizarPoliza(pol);
+				cue.setSaldo(cue.getSaldo() - pol.getCapital());
+				cuentaON.actualizarCuenta(cue);
+				polizasSolicitadas();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * rechazar poliza en estado solicitado
+	 * 
+	 * @param id
+	 */
 	public void negarPoliza(int id) {
 		Poliza pol = new Poliza();
 		try {
@@ -266,5 +288,5 @@ public class PolizasBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

@@ -67,6 +67,9 @@ public class RegistroBean implements Serializable{
 		this.newUsuario = newUsuario;
 	}
 
+	/**
+	 * listar todos los registros
+	 */
 	public void listarRegistros() {
 		listaRegistros = registroON.listarRegistros(newRegistro.getUsuario().getNombreUsuario());
 	}

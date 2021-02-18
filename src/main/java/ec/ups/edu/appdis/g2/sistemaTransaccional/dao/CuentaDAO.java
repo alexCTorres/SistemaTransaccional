@@ -126,7 +126,11 @@ public class CuentaDAO {
 		return (List<Cuenta>) q.getResultList();
 	}
 
-	
+	/**
+	 * listar cuentas por usuario
+	 * @param nomUsuario
+	 * @return
+	 */
 	public List<Cuenta> listaCuentasUsuario(String nomUsuario) {
 		Query query = em.createQuery( "select c FROM Cuenta c, Persona p, Usuario u Where u.persona = p.id and c.persona = p.id and u.nombreUsuario = ?1", Cuenta.class);
 		query.setParameter(1, nomUsuario);

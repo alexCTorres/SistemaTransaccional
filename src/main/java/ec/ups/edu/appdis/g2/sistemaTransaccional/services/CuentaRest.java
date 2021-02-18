@@ -54,6 +54,38 @@ public class CuentaRest {
 		}
 	}
 	
+	@GET
+	@Path("/buscarCuenta")
+	@Produces("application/json")
+	public Cuenta buscarCuenta(@QueryParam("numCuenta") String numCuenta) {
+		System.out.println("Entra a listar cuentas");
+		try {
+			return cuentaON.buscarCuenta(numCuenta);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@POST
+	@Path("/actializarCuenta")
+	@Produces("application/json")
+	public Respuesta actualizarCuenta(Cuenta c) {
+		Respuesta r = new Respuesta();
+		Cuenta cuentaNew = new Cuenta();
+		try {
+			cuentaON.actualizarCuenta(c);
+			r.setCodigo(1);
+			r.setMensaje("cuenta actualizada");
+			return r;
+		} catch (Exception e) {
+			e.printStackTrace();
+			r.setCodigo(0);
+			r.setMensaje("error de cuenta actualizada");
+			return r;
+		}
+	}
+	
 
 	@POST
 	@Path("/cambioContrasena")

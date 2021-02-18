@@ -20,6 +20,12 @@ public class GestionRegistroON  {
 	@Inject
 	private UsuarioDAO daoUsuario;
 
+	/**
+	 * 
+	 * @param registro
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean registrarRegistro(Registro registro) throws Exception {
 		try {
 			daoRegistro.insertJPA(registro);
@@ -30,6 +36,12 @@ public class GestionRegistroON  {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public Registro buscarRegistro(int id) throws Exception {
 		Registro r = new Registro();
 		try {
@@ -42,6 +54,12 @@ public class GestionRegistroON  {
 		return r;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean eliminarRegistro(int id) throws Exception {
 		try {
 			Registro r = daoRegistro.readJPA(id);
@@ -58,11 +76,12 @@ public class GestionRegistroON  {
 		return true;
 	}
 
-	public boolean enviarCorreoIngresoCuenta(String correo) {
-		return true;
-	}
-
-
+	/**
+	 * 
+	 * @param usuario
+	 * @return
+	 * @throws Exception
+	 */
 	public Usuario buscarUsuarioNombre(String usuario) throws Exception {
 		Usuario u = new Usuario();
 		System.out.println("entra al dao");
@@ -76,10 +95,11 @@ public class GestionRegistroON  {
 		}
 	}
 
-	public boolean cambioContrasena(String correo) {
-		return true;
-	}
-	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public List<Registro> listarRegistros(String user){
 		return daoRegistro.listaRegistros(user);
 	}

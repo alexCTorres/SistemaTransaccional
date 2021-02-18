@@ -77,6 +77,11 @@ public class MovimientosDAO {
 		return (List<Movimientos>) q.getResultList();
 	}
 	
+	/**
+	 * listar movimientos por #cuenta
+	 * @param numCuenta
+	 * @return
+	 */
 	public List<Movimientos> listaMovimientosporCuenta(String numCuenta){
 		Query query = em.createQuery("Select m FROM Movimientos m, Cuenta c Where m.cuenta = c.numeroCuenta and c.numeroCuenta = ?1", Movimientos.class);
 		query.setParameter(1, numCuenta);

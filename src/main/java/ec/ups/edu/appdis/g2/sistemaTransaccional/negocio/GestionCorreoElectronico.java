@@ -20,6 +20,12 @@ public class GestionCorreoElectronico {
 	String origen = "bancoups@gmail.com";
 	String password = "bancoUPS123";
 
+	/**
+	 * enviar correo
+	 * @param correo
+	 * @param asunto
+	 * @param mensaje
+	 */
 	public void enviarCOrreo(String correo, String asunto, String mensaje) {
 		try {
 			Properties props = new Properties();
@@ -44,6 +50,10 @@ public class GestionCorreoElectronico {
 		}
 	}
 
+	/**
+	 * mail valido
+	 * @param u
+	 */
 	public void envioMailIngresoValido(Usuario u) {
 		String mensaje= "Estimado/a: " +u.getPersona().getNombres() + " "+ u.getPersona().getApellidos()
 				+"\nSe realizó un ingreso satisfactorio al Sistema Transaccional UPS"
@@ -51,6 +61,10 @@ public class GestionCorreoElectronico {
 		enviarCOrreo(u.getPersona().getCorreo(), "Ingreso Válido", mensaje);
 	}
 
+	/**
+	 * 
+	 * @param u
+	 */
 	public void envioMailIngresoInValido(Usuario u) {
 		String mensaje= "Estimado/a: " +u.getPersona().getNombres() + " "+ u.getPersona().getApellidos()
 				+"\nSe realizó un ingreso inválido al Sistema Transaccional UPS"
@@ -59,6 +73,11 @@ public class GestionCorreoElectronico {
 		enviarCOrreo(u.getPersona().getCorreo(), "Ingreso Inválido", mensaje);
 	}
 	
+	/**
+	 * 
+	 * @param u
+	 * @param c
+	 */
 	public void envioMailRegistroCuenta(Usuario u, Cuenta c) {
 		String mensaje= "Estimado/a: " +u.getPersona().getNombres() + "  "+ u.getPersona().getApellidos()
 				+"\nSe realizó la creación de la cuenta en el Sistema Transaccional UPS"
@@ -69,6 +88,11 @@ public class GestionCorreoElectronico {
 		enviarCOrreo(u.getPersona().getCorreo(), "Creación de Cuenta UPS", mensaje);
 	}
 	
+	/**
+	 * 
+	 * @param p
+	 * @param c
+	 */
 	public void envioMailAgregarCuenta(Persona p, Cuenta c) {
 		String mensaje= "Estimado/a: " +p.getNombres()+ " "+ p.getApellidos()
 				+"\nSe realizó la agregación de una cuenta a su usuario en el Sistema Transaccional UPS"
@@ -78,6 +102,10 @@ public class GestionCorreoElectronico {
 		enviarCOrreo(p.getCorreo(), "Agregación de Cuenta UPS", mensaje);
 	}
 	
+	/**
+	 * 
+	 * @param u
+	 */
 	public void envioMailCambioContrasena(Usuario u) {
 		System.out.println("entro al metodo de envio de mail;" +u.getPersona().getNombres() + u.getPersona().getApellidos());
 		String mensaje= "Estimado/a: " +u.getPersona().getNombres() + u.getPersona().getApellidos()

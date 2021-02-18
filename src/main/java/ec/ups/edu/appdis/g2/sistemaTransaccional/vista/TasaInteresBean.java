@@ -76,6 +76,10 @@ public class TasaInteresBean implements Serializable {
 		this.id = id;
 	}
 
+	/**
+	 * guardar una tasa de interes
+	 * @return
+	 */
 	public String doGuardarTasaInteres() {
 		TasaInteres tasa = new TasaInteres();
 		TipoCuenta tipoC = new TipoCuenta();

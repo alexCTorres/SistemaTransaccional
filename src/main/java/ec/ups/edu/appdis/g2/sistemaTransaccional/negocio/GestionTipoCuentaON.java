@@ -14,6 +14,12 @@ public class GestionTipoCuentaON {
 	@Inject
 	private TipoCuentaDAO daoTipoCuenta;
 
+	/**
+	 * 
+	 * @param tipoCuenta
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean registrarTipoCuenta(TipoCuenta tipoCuenta) throws Exception {
 		try {
 			daoTipoCuenta.insertJPA(tipoCuenta);
@@ -25,6 +31,12 @@ public class GestionTipoCuentaON {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param tipoCuenta
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean actualizarTipoCuenta(TipoCuenta tipoCuenta) throws Exception {
 		try {
 			daoTipoCuenta.updateJPA(tipoCuenta);
@@ -36,6 +48,12 @@ public class GestionTipoCuentaON {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public TipoCuenta buscarTipoCuenta(int id) throws Exception {
 		TipoCuenta tipoCuenta = new TipoCuenta();
 		try {
@@ -48,6 +66,12 @@ public class GestionTipoCuentaON {
 		return tipoCuenta;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean eliminarTipoCuenta(int id) throws Exception {
 		try {
 			TipoCuenta t = daoTipoCuenta.readJPA(id);
@@ -64,6 +88,11 @@ public class GestionTipoCuentaON {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param tipCuenta
+	 * @return
+	 */
 	public TipoCuenta buscarPoNombre(String tipCuenta){
 		//TipoCuenta tipo = new TipoCuenta();
 		return daoTipoCuenta.buscarPorNombre(tipCuenta);

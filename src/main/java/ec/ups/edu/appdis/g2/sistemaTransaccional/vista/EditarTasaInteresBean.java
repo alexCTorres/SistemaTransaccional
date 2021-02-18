@@ -72,6 +72,12 @@ public class EditarTasaInteresBean implements Serializable {
 		this.tasaInteresON = tasaInteresON;
 	}
 
+	/**
+	 * ir a pagina editar pasando un parametro
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public String irPaginaEditar(int id) {
 		TasaInteres newTasaInteres = new TasaInteres();
 		System.out.println("id que pasa de la pagina listar" + id);
@@ -86,6 +92,11 @@ public class EditarTasaInteresBean implements Serializable {
 		return "editarTasaInteres?faces-redirect=true&id=" + id;
 	}
 
+	/**
+	 * datos de tasa de interes
+	 * 
+	 * @return
+	 */
 	public String cargarDatosTasa() {
 		TasaInteres newTasaInteres = new TasaInteres();
 		try {
@@ -100,6 +111,11 @@ public class EditarTasaInteresBean implements Serializable {
 		return null;
 	}
 
+	/**
+	 * buscar tasa de interes
+	 * 
+	 * @return
+	 */
 	public String doBuscarTasa() {
 		TasaInteres tasa = new TasaInteres();
 		try {
@@ -120,6 +136,11 @@ public class EditarTasaInteresBean implements Serializable {
 		}
 	}
 
+	/**
+	 * actualizar tasa de interes
+	 * 
+	 * @return
+	 */
 	public String actualizarTasa() {
 		TasaInteres tasa = new TasaInteres();
 		try {
@@ -138,7 +159,12 @@ public class EditarTasaInteresBean implements Serializable {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * eliminar tasa de interes
+	 * 
+	 * @return
+	 */
 	public String eliminarTasa() {
 		TasaInteres tasa = new TasaInteres();
 		try {

@@ -31,6 +31,12 @@ public class GestionCuentaON {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param cuenta
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean actualizarCuenta(Cuenta cuenta) throws Exception {
 		try {
 			daoCuenta.updateJPA(cuenta);
@@ -42,6 +48,12 @@ public class GestionCuentaON {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param numCuenta
+	 * @return
+	 * @throws Exception
+	 */
 	public Cuenta buscarCuenta(String numCuenta) throws Exception {
 		Cuenta c = new Cuenta();
 		try {
@@ -54,14 +66,28 @@ public class GestionCuentaON {
 		return c;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public List<Cuenta> listaCuentas(int id){
 		return daoCuenta.listaCUentas(id);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Cuenta> listarCuentasALL(){
 		return daoCuenta.listaCuentas();
 	}
 	
+	/**
+	 * 
+	 * @param nomUsuario
+	 * @return
+	 */
 	public List<Cuenta> listarCuentasprUsuario(String nomUsuario){
 		return daoCuenta.listaCuentasUsuario(nomUsuario);
 	}

@@ -15,6 +15,12 @@ public class GestionPolizaON {
 	@Inject
 	private PolizaDAO daoPoliza;
 	
+	/**
+	 * 
+	 * @param poliza
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean registrarPoliza(Poliza poliza) throws Exception {
 		try {
 			daoPoliza.insertJPA(poliza);
@@ -26,6 +32,12 @@ public class GestionPolizaON {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param poliza
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean actualizarPoliza(Poliza poliza) throws Exception {
 		try {
 			daoPoliza.updateJPA(poliza);
@@ -37,6 +49,12 @@ public class GestionPolizaON {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public Poliza buscarPoliza(int id) throws Exception {
 		Poliza p = new Poliza();
 		try {
@@ -49,6 +67,12 @@ public class GestionPolizaON {
 		return p;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean eliminarPoliza(int id) throws Exception {
 		try {
 			Poliza p = daoPoliza.readJPA(id);
@@ -65,20 +89,41 @@ public class GestionPolizaON {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param capital
+	 * @param tasaInteres
+	 * @param plazoPoliza
+	 * @return
+	 */
 	public double calcularInteres(double capital, double tasaInteres, int plazoPoliza) {
 		double tasa= tasaInteres/36000;
 		double interes = capital*tasa*plazoPoliza;
 		return interes;
 	}
 	
+	/**
+	 * 
+	 * @param numCuenta
+	 * @return
+	 */
 	public List<Poliza> listarPorNumCuenta(String numCuenta){
 		return daoPoliza.listaPolizas(numCuenta);
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public List<Poliza> listarPorPersona(int id){
 		return daoPoliza.listaPolizasPorPersona(id);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Poliza> listarPplozasSolicitadas(){
 		return daoPoliza.listaPolizasSolicitadas();
 	}

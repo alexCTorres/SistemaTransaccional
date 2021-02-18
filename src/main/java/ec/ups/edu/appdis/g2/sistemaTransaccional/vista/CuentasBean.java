@@ -30,9 +30,8 @@ public class CuentasBean implements Serializable {
 	private Persona newPersona;
 
 	private TipoCuenta newTipoCuenta;
-	
+
 	private List<Cuenta> listCuentas;
-	
 
 	private Usuario newUsuario;
 
@@ -59,25 +58,18 @@ public class CuentasBean implements Serializable {
 		newUsuario = new Usuario();
 		doListarCuentas();
 	}
-	
 
 	public List<Cuenta> getListCuentas() {
 		return listCuentas;
 	}
 
-
-
 	public void setListCuentas(List<Cuenta> listCuentas) {
 		this.listCuentas = listCuentas;
 	}
 
-
-
 	public Usuario getNewUsuario() {
 		return newUsuario;
 	}
-
-
 
 	public void setNewUsuario(Usuario newUsuario) {
 		this.newUsuario = newUsuario;
@@ -107,6 +99,11 @@ public class CuentasBean implements Serializable {
 		this.newTipoCuenta = newTipoCuenta;
 	}
 
+	/**
+	 * guardar una cuenta
+	 * 
+	 * @return
+	 */
 	public String doGuardarCuenta() {
 		Cuenta c = new Cuenta();
 		Usuario u = new Usuario();
@@ -144,6 +141,11 @@ public class CuentasBean implements Serializable {
 		return null;
 	}
 
+	/**
+	 * buscar una persona
+	 * 
+	 * @return
+	 */
 	public String doBuscarPersona() {
 		Persona p = new Persona();
 		try {
@@ -167,6 +169,11 @@ public class CuentasBean implements Serializable {
 		}
 	}
 
+	/**
+	 * guardar cuenta
+	 * 
+	 * @return
+	 */
 	public String doAgregarCuenta() {
 		Cuenta c = new Cuenta();
 		Persona p = new Persona();
@@ -188,6 +195,11 @@ public class CuentasBean implements Serializable {
 		}
 	}
 
+	/**
+	 * generar una serie aleatoria
+	 * 
+	 * @return
+	 */
 	public String generarSerie() {
 		int n = (int) (Math.random() * (1000 - 1)) + 1;
 		int res = n * 10000000;
@@ -228,15 +240,23 @@ public class CuentasBean implements Serializable {
 		}
 	}
 
+	/**
+	 * generar nombre de usuario aleatorio
+	 * @param nombre
+	 * @return
+	 */
 	public String generarNombreUsuario(String nombre) {
 		int n = (int) (Math.random() * (100 - 1)) + 1;
 		int res = n * 100;
 
-		return nombre+res;
+		return nombre + res;
 	}
-	
+
+	/**
+	 * lstar cuentas
+	 */
 	public void doListarCuentas() {
 		listCuentas = cuentaON.listarCuentasALL();
 	}
-	
+
 }

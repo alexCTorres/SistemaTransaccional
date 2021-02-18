@@ -21,32 +21,56 @@ public class TipoCuentaDAO {
 	@Inject
 	private Connection con;
 
-	// metodo de insertar con JPA utilizando el Entity manager
+	/**
+	 *  metodo de insertar con JPA utilizando el Entity manager
+	 * @param tipoCuenta
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean insertJPA(TipoCuenta tipoCuenta) throws SQLException {
 		em.persist(tipoCuenta);
 		return true;
 	}
 
-	// metodo de update con JPA utilizando el Entity manager
+	/**
+	 * metodo de update con JPA utilizando el Entity manager
+	 * @param tipoCuenta
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updateJPA(TipoCuenta tipoCuenta) throws SQLException {
 		em.merge(tipoCuenta);
 		return true;
 	}
 
-	// metodo de read con JPA utilizando el Entity manager
+	/**
+	 *  metodo de read con JPA utilizando el Entity manager
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public TipoCuenta readJPA(int id) throws SQLException {
 		TipoCuenta tipoCuenta = em.find(TipoCuenta.class, id);
 		return tipoCuenta;
 	}
 
-	// metodo de delete con JPA utilizando el Entity manager
+	/**
+	 * metodo de delete con JPA utilizando el Entity manager
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean deleteJPA(int id) throws SQLException {
 		TipoCuenta tipoCuenta = em.find(TipoCuenta.class, id);
 		em.remove(tipoCuenta);
 		return true;
 	}
 	
-	//metodo para buscar un tipo cuenta medinate el nombre
+	/**
+	 * metodo para buscar un tipo cuenta medinate el nombre
+	 * @param tipCuenta
+	 * @return
+	 */
 	public TipoCuenta buscarPorNombre(String tipCuenta){
 		String jpql = "Select t FROM TipoCuenta t where tipoCuenta = ?1";
 		TipoCuenta tipc = new TipoCuenta();

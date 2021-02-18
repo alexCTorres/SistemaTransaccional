@@ -14,6 +14,12 @@ public class GestionTasaInteresON {
 	@Inject
 	private TasaInteresDAO daoTasaInteres;
 
+	/**
+	 * 
+	 * @param tasaInteres
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean registrarTasaInteres(TasaInteres tasaInteres) throws Exception {
 		try {
 			daoTasaInteres.insertJPA(tasaInteres);
@@ -26,6 +32,12 @@ public class GestionTasaInteresON {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param tasaInteres
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean actualizarTasaInteres(TasaInteres tasaInteres) throws Exception {
 		try {
 			daoTasaInteres.updateJPA(tasaInteres);
@@ -37,6 +49,12 @@ public class GestionTasaInteresON {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public TasaInteres buscarTasaInteres(int id) throws Exception {
 		TasaInteres t = new TasaInteres();
 		try {
@@ -49,6 +67,12 @@ public class GestionTasaInteresON {
 		return t;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean eliminarTasaInteres(int id) throws Exception {
 		try {
 			TasaInteres ti = daoTasaInteres.readJPA(id);
@@ -65,10 +89,18 @@ public class GestionTasaInteresON {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<TasaInteres> getTasaInteres(){
 		return daoTasaInteres.listaTasaI();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public int extraerCodigo() {
 		return daoTasaInteres.extraerCOdigo();
 	}

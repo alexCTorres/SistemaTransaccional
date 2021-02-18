@@ -42,7 +42,7 @@ public class LoginBean implements Serializable {
 	private List<TasaInteres> listaTasa;
 	private Poliza newPoliza;
 	private Poliza resultPoliza;
-	
+
 	@Inject
 	private GestionTasaInteresON tasaON;
 
@@ -60,26 +60,24 @@ public class LoginBean implements Serializable {
 
 	@Inject
 	private GestionCuentaON cuantaON;
-	
+
 	@Inject
 	private GestionMovimientosON movimientosON;
-	
+
 	@Inject
 	private GestionPolizaON polizaON;
-	
+
 	private List<Registro> listaRegistros;
-	
+
 	private String numeroCuenta;
-	
 
 	@PostConstruct
 	public void init() {
-	newUsuario = new Usuario();
-	newPoliza = new Poliza();
-	resultPoliza = new Poliza();
+		newUsuario = new Usuario();
+		newPoliza = new Poliza();
+		resultPoliza = new Poliza();
 	}
-	
-   
+
 	public Poliza getResultPoliza() {
 		return resultPoliza;
 	}
@@ -92,11 +90,9 @@ public class LoginBean implements Serializable {
 		return listaTasa;
 	}
 
-
 	public void setListaTasa(List<TasaInteres> listaTasa) {
 		this.listaTasa = listaTasa;
 	}
-
 
 	public Usuario getNewUsuario() {
 		return newUsuario;
@@ -105,8 +101,7 @@ public class LoginBean implements Serializable {
 	public void setNewUsuario(Usuario newUsuario) {
 		this.newUsuario = newUsuario;
 	}
-	
-	
+
 	public List<Cuenta> getListaCuentas() {
 		return listaCuentas;
 	}
@@ -130,7 +125,7 @@ public class LoginBean implements Serializable {
 	public void setListaRegistros(List<Registro> listaRegistros) {
 		this.listaRegistros = listaRegistros;
 	}
-	
+
 	public List<Poliza> getListaPolizas() {
 		return listaPolizas;
 	}
@@ -146,6 +141,7 @@ public class LoginBean implements Serializable {
 	public void setListaMovimientos(List<Movimientos> listaMovimientos) {
 		this.listaMovimientos = listaMovimientos;
 	}
+
 	public String getNumCuenta() {
 		return numeroCuenta;
 	}
@@ -153,6 +149,7 @@ public class LoginBean implements Serializable {
 	public void setNumCuenta(String numCuenta) {
 		this.numeroCuenta = numCuenta;
 	}
+
 	public Poliza getNewPoliza() {
 		return newPoliza;
 	}
@@ -161,6 +158,11 @@ public class LoginBean implements Serializable {
 		this.newPoliza = newPoliza;
 	}
 
+	/**
+	 * iniciar sesion
+	 * 
+	 * @return
+	 */
 	public String doIniciarSesion() {
 		Registro reg = new Registro();
 		Usuario u = new Usuario();
@@ -179,17 +181,17 @@ public class LoginBean implements Serializable {
 				usuarioON.actualizarUsuario(u);
 				registroON.registrarRegistro(reg);
 				if (u.getRol().equals("ADMINISTRATIVO")) {
-				    //envioCorreoON.envioMailIngresoValido(u);
+					envioCorreoON.envioMailIngresoValido(u);
 					return "vistaAdministrador?faces-redirect=true";
 				} else if (u.getRol().equals("CAJERO")) {
-					//envioCorreoON.envioMailIngresoValido(u);
+					envioCorreoON.envioMailIngresoValido(u);
 					return "vistaCajero?faces-redirect=true";
 				} else if (u.getRol().equals("ASISTENTE DE CAPTACIONES")) {
-					//envioCorreoON.envioMailIngresoValido(u);
+					envioCorreoON.envioMailIngresoValido(u);
 					return "vistaAsistenteCaptaciones?faces-redirect=true";
 				} else {
-				    //envioCorreoON.envioMailIngresoValido(u);
-					listaCuentas =  cuantaON.listaCuentas(u.getPersona().getId());
+					envioCorreoON.envioMailIngresoValido(u);
+					listaCuentas = cuantaON.listaCuentas(u.getPersona().getId());
 					listaRegistros = registroON.listarRegistros(u.getNombreUsuario());
 					listaPolizas = polizaON.listarPorPersona(u.getPersona().getId());
 					return "templateCliente?faces-redirect=true";
@@ -208,7 +210,7 @@ public class LoginBean implements Serializable {
 					usuarioON.actualizarUsuario(u);
 					registroON.registrarRegistro(reg);
 					FacesContext.getCurrentInstance().addMessage(null, msgI);
-					//envioCorreoON.envioMailIngresoInValido(u);
+					envioCorreoON.envioMailIngresoInValido(u);
 					return null;
 				}
 			}
@@ -220,25 +222,45 @@ public class LoginBean implements Serializable {
 		}
 	}
 
+	/**
+	 * } cerrar sesion
+	 * 
+	 * @return
+	 */
 	public String cerrarSesion() {
 		HttpSession sesion = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		sesion.invalidate();
 		return "login?faces-redirect=true";
 	}
-	
+
+	/**
+	 * ver movimiento de una cuenta en otra pagina
+	 * 
+	 * @param cuenta
+	 * @return
+	 */
 	public String llamarVerMovimientos(String cuenta) {
-		System.out.println("entro al metodoooo num cuenta " +cuenta);
+		System.out.println("entro al metodoooo num cuenta " + cuenta);
 		listaMovimientos = movimientosON.getMovimientosCuenta(cuenta);
-		System.out.println("movimientos" +listaMovimientos.toString());
+		System.out.println("movimientos" + listaMovimientos.toString());
 		byte f = 0;
 		return "movimientosCuenta?faces-redirect=true";
 	}
-	
+
+	/**
+	 * solicitar una poliza ir a pagina
+	 * 
+	 * @param numCuenta
+	 * @return
+	 */
 	public String SolicitarPoliza(String numCuenta) {
 		numeroCuenta = numCuenta;
 		return "solicitarPoliza?faces-redirect=true";
 	}
-	
+
+	/**
+	 * solicitra la poliza
+	 */
 	public void solicitar() {
 		Calendar calendar = Calendar.getInstance();
 		Cuenta cuent = new Cuenta();
@@ -249,9 +271,9 @@ public class LoginBean implements Serializable {
 			pol.setPlazo(newPoliza.getPlazo());
 			pol.setFrecuenciaPago(newPoliza.getFrecuenciaPago());
 			calendar.add(Calendar.DATE, newPoliza.getPlazo());
-			int mes = (calendar.get(Calendar.MONTH)+1);
+			int mes = (calendar.get(Calendar.MONTH) + 1);
 			int dia = calendar.get(Calendar.DATE);
-			pol.setFechaVencimiento("" +calendar.get(Calendar.DATE) +"/" +mes +"/" +calendar.get(Calendar.YEAR));
+			pol.setFechaVencimiento("" + calendar.get(Calendar.DATE) + "/" + mes + "/" + calendar.get(Calendar.YEAR));
 			double capital = newPoliza.getCapital();
 			int plazo = newPoliza.getPlazo();
 			double tasa = 0;
@@ -265,7 +287,7 @@ public class LoginBean implements Serializable {
 			double interes = capital * (tasa / 36000) * plazo;
 			pol.setInteres(interes);
 			pol.setDiaPago(dia);
-			byte[] foto = {0,0,0,0,0,0,0,0};
+			byte[] foto = { 0, 0, 0, 0, 0, 0, 0, 0 };
 			pol.setFotoCedula(foto);
 			pol.setFotoServBasico(foto);
 			cuent = cuantaON.buscarCuenta(numeroCuenta);
@@ -276,7 +298,7 @@ public class LoginBean implements Serializable {
 			resultPoliza.setFrecuenciaPago(pol.getFrecuenciaPago());
 			resultPoliza.setFechaVencimiento(pol.getFechaVencimiento());
 			resultPoliza.setInteres(pol.getInteres());
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

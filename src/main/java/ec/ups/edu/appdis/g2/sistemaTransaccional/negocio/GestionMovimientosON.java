@@ -16,6 +16,12 @@ public class GestionMovimientosON {
 	@Inject
 	private MovimientosDAO daoMovimientos;
 	
+	/**
+	 * 
+	 * @param movimientos
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean registrarMoviemientos(Movimientos movimientos) throws Exception {
 		try {
 			daoMovimientos.insertJPA(movimientos);
@@ -27,6 +33,12 @@ public class GestionMovimientosON {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param movimientos
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean actualizarMovimientos(Movimientos movimientos) throws Exception {
 		try {
 			daoMovimientos.updateJPA(movimientos);
@@ -38,6 +50,12 @@ public class GestionMovimientosON {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public Movimientos buscarCuenta(int id) throws Exception {
 		Movimientos m  = new Movimientos();
 		try {
@@ -50,6 +68,12 @@ public class GestionMovimientosON {
 		return m;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean eliminarMovimientos(int id) throws Exception {
 		try {
 			Movimientos m = daoMovimientos.readJPA(id);
@@ -66,10 +90,19 @@ public class GestionMovimientosON {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Movimientos> getMovimientis(){
 		return daoMovimientos.listaMovimientos();
 	}
 	
+	/**
+	 * 
+	 * @param numCuenta
+	 * @return
+	 */
 	public List<Movimientos> getMovimientosCuenta(String numCuenta){
 		return daoMovimientos.listaMovimientosporCuenta(numCuenta);
 	}

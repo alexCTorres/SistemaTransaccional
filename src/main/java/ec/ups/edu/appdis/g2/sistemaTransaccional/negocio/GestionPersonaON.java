@@ -9,11 +9,17 @@ import ec.ups.edu.appdis.g2.sistemaTransaccional.dao.PersonaDAO;
 import ec.ups.edu.appdis.g2.sistemaTransaccional.modelo.Persona;
 
 @Stateless
-public class GestionPersonaON  {
+public class GestionPersonaON {
 
 	@Inject
 	private PersonaDAO daoPersona;
-	
+
+	/**
+	 * 
+	 * @param persona
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean registrarPersona(Persona persona) throws Exception {
 		try {
 			daoPersona.insertJPA(persona);
@@ -24,7 +30,13 @@ public class GestionPersonaON  {
 		}
 		return true;
 	}
-	
+
+	/**
+	 * 
+	 * @param persona
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean actualizarPersona(Persona persona) throws Exception {
 		try {
 			daoPersona.updateJPA(persona);
@@ -35,7 +47,13 @@ public class GestionPersonaON  {
 		}
 		return true;
 	}
-	
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public Persona buscarPersona(int id) throws Exception {
 		Persona p = new Persona();
 		try {
@@ -47,13 +65,19 @@ public class GestionPersonaON  {
 		}
 		return p;
 	}
-	
+
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean eliminarPersona(int id) throws Exception {
 		try {
 			Persona p = daoPersona.readJPA(id);
-			if(p==null) {
+			if (p == null) {
 				System.out.println("Persona no encontrada");
-			}else {
+			} else {
 				daoPersona.deleteJPA(p.getCedula());
 			}
 		} catch (SQLException e) {
@@ -61,14 +85,18 @@ public class GestionPersonaON  {
 			e.printStackTrace();
 			throw new Exception("Error al registrar");
 		}
-		
+
 		return true;
 	}
-	
 
-	 public Persona buscarPorCed(String cedula) {
-		 Persona p = new Persona();
-		 p = daoPersona.buscarPorCedula(cedula);
-		 return p;
-	 }
+	/**
+	 * 
+	 * @param cedula
+	 * @return
+	 */
+	public Persona buscarPorCed(String cedula) {
+		Persona p = new Persona();
+		p = daoPersona.buscarPorCedula(cedula);
+		return p;
+	}
 }

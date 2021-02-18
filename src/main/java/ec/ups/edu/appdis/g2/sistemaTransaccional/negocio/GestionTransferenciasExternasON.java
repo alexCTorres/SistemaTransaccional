@@ -15,6 +15,12 @@ public class GestionTransferenciasExternasON  {
 	@Inject
 	private TransferenciasExternasDAO daoTransExternas;
 	
+	/**
+	 * 
+	 * @param transExternas
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean registrarTransferenciasExternas(TransferenciasExternas transExternas) throws Exception {
 		try {
 			daoTransExternas.insertJPA(transExternas);
@@ -26,6 +32,12 @@ public class GestionTransferenciasExternasON  {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param transExternas
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean actualizarTransferenciasExternas(TransferenciasExternas transExternas) throws Exception {
 		try {
 			daoTransExternas.updateJPA(transExternas);
@@ -37,6 +49,12 @@ public class GestionTransferenciasExternasON  {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public TransferenciasExternas buscarTransferenciasExternas(int id) throws Exception {
 		TransferenciasExternas tranExternas = new TransferenciasExternas();
 		try {
@@ -49,6 +67,12 @@ public class GestionTransferenciasExternasON  {
 		return tranExternas;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean eliminarTransferenciasExternas(int id) throws Exception {
 		try {
 			TransferenciasExternas te = daoTransExternas.readJPA(id);

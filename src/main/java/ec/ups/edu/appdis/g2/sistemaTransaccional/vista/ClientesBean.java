@@ -110,6 +110,9 @@ public class ClientesBean implements Serializable {
 		newCuenta = new Cuenta();
 	}
 
+	/**
+	 * listar cuentas
+	 */
 	public void reloadCuentas() {
 		Persona p = new Persona();
 		try {
@@ -125,6 +128,11 @@ public class ClientesBean implements Serializable {
 
 	}
 	
+	/**
+	 * movimientos de una cuenta
+	 * @param cuenta
+	 * @return
+	 */
 	public String llamarVerMovimientos(String cuenta) {
 		System.out.println("entro al metodoooo num cuenta " +cuenta);
 		newCuenta.setNumeroCuenta(cuenta);
@@ -133,6 +141,9 @@ public class ClientesBean implements Serializable {
 		return "movimientosCuenta?faces-redirect=true";
 	}
 	
+	/**
+	 * listar movimientos de una cuenta
+	 */
 	public void listarMovimientosCuenta() {
 		//listaMovimientos = movimientosON.getMovimientosCuenta(cuenta);
 		System.out.println("entro al metodoooo listaaar num cuenta " +newCuenta.getNumeroCuenta());

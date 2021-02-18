@@ -92,6 +92,10 @@ public class MovimientosBean implements Serializable {
 		this.listaMoviemientos = listaMoviemientos;
 	}
 
+	/**
+	 * buscar una cuenta
+	 * @return
+	 */
 	public String doBuscarCuenta() {
 		Cuenta c = new Cuenta();
 		try {
@@ -121,6 +125,10 @@ public class MovimientosBean implements Serializable {
 		}
 	}
 
+	/**
+	 * guardar un movimiento
+	 * @return
+	 */
 	public String guardarMovimiento() {
 		Cuenta c = new Cuenta();
 		Movimientos m = new Movimientos();
@@ -166,6 +174,9 @@ public class MovimientosBean implements Serializable {
 		}	
 		}
 	
+	/**
+	 * listar todos los movimientos
+	 */
 	public void reloadMovimientos() {
 		listaMoviemientos = movimientisON.getMovimientis();
 	}

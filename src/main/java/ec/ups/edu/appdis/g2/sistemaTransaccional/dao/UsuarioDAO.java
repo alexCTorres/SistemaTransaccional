@@ -26,39 +26,69 @@ public class UsuarioDAO {
 	@Inject
 	private PersonaDAO daoPersona;
 
-	// metodo de insertar con JPA utilizando el Entity manager
+	/**
+	 * metodo de insertar con JPA utilizando el Entity manager
+	 * 
+	 * @param usuario
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean insertJPA(Usuario usuario) throws SQLException {
 		em.persist(usuario);
 		return true;
 	}
 
-	// metodo de update con JPA utilizando el Entity manager
+	/**
+	 * metodo de update con JPA utilizando el Entity manager
+	 * 
+	 * @param usuario
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean updateJPA(Usuario usuario) throws SQLException {
 		em.merge(usuario);
 		return true;
 	}
-	
-	// metodo de update con JPA utilizando el Entity manager
-		public boolean updateJPAUser(String nomUsuario) throws SQLException {
-			em.merge(nomUsuario);
-			return true;
-		}
 
-	// metodo de read con JPA utilizando el Entity manager
+	/**
+	 * metodo de update con JPA utilizando el Entity manager
+	 * 
+	 * @param nomUsuario
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean updateJPAUser(String nomUsuario) throws SQLException {
+		em.merge(nomUsuario);
+		return true;
+	}
+
+	/**
+	 * metodo de read con JPA utilizando el Entity manager
+	 * 
+	 * @param nomUsuario
+	 * @return
+	 * @throws Exception
+	 */
 	public Usuario readJPA(String nomUsuario) throws Exception {
-		Usuario usuario = new Usuario(); 
+		Usuario usuario = new Usuario();
 		try {
-			usuario =  em.find(Usuario.class, nomUsuario);
+			usuario = em.find(Usuario.class, nomUsuario);
 			System.out.println("Usuario encontrado DAO: " + usuario.getNombreUsuario());
 			return usuario;
-		}catch (Exception e) {
-			System.out.println("No encontrado error DAOUsuario: " +e.getMessage());
+		} catch (Exception e) {
+			System.out.println("No encontrado error DAOUsuario: " + e.getMessage());
 			return null;
 		}
 
 	}
 
-	//buscar usuario por nombre medinate jdbc
+	/**
+	 * buscar usuario por nombre medinate jdbc
+	 * 
+	 * @param usuario
+	 * @return
+	 * @throws SQLException
+	 */
 	public Usuario buscarPorUsuarioJPA(String usuario) throws SQLException {
 		System.out.println("entra al sql");
 		String sql = "SELECT u FROM ef_usuarios u WHERE u.usu_nombre_usuario=?1";
@@ -82,23 +112,38 @@ public class UsuarioDAO {
 		return u;
 	}
 
-	// metodo de delete con JPA utilizando el Entity manager
+	/**
+	 * metodo de delete con JPA utilizando el Entity manager
+	 * 
+	 * @param nomUsuario
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean deleteJPA(String nomUsuario) throws SQLException {
 		Usuario usuario = em.find(Usuario.class, nomUsuario);
 		em.remove(usuario);
 		return true;
 	}
-	
-	//listar todos los usuarios creados
-	public List<Usuario> listaUsuarios(){
+
+	/**
+	 * listar todos los usuarios creados
+	 * 
+	 * @return
+	 */
+	public List<Usuario> listaUsuarios() {
 		String jpql = "Select u FROM Usuario u";
-		Query q = em.createQuery(jpql,Usuario.class);
+		Query q = em.createQuery(jpql, Usuario.class);
 		return (List<Usuario>) q.getResultList();
 	}
-	//listar todos los usuarios creados
-		public List<Usuario> listaUsuariosBloq(){
-			String jpql = "Select u FROM Usuario u where u.estado = 'INACTIVO'";
-			Query q = em.createQuery(jpql,Usuario.class);
-			return (List<Usuario>) q.getResultList();
-		}
+
+	/**
+	 * listar todos los usuarios creados
+	 * 
+	 * @return
+	 */
+	public List<Usuario> listaUsuariosBloq() {
+		String jpql = "Select u FROM Usuario u where u.estado = 'INACTIVO'";
+		Query q = em.createQuery(jpql, Usuario.class);
+		return (List<Usuario>) q.getResultList();
+	}
 }
